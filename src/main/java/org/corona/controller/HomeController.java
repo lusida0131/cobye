@@ -46,5 +46,9 @@ public class HomeController {
 	public String dashboard() {
 		return "/page/dashboard";
 	}
+	@GetMapping("/hospital/hospital")
+	public String hospital() {
+		return "/hospital/hospital";
+	}
 	
 }
