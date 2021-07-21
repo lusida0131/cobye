@@ -25,6 +25,11 @@ public class HomeController {
 		return "/dailyAll/dashboard";
 	}
 	
+	@GetMapping("/ASA/asa")
+	public String asa() {
+		return "/ASA/asa";
+	}
+	
 	@GetMapping("/page/index")
 	public String index1() {
 		return "/page/index";

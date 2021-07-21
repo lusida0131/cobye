@@ -82,6 +82,13 @@
 			</exclusions>
 			<scope>runtime</scope>
 		</dependency>
+		<!-- lombok 라이브러리 : Getter/Setter, 생성자, toString을 자동 생성 -->
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<version>1.18.20</version>
+			<scope>provided</scope>
+		</dependency>
 
 		<!-- @Inject -->
 		<dependency>

@@ -73,7 +73,7 @@
                 <span class="ml-3 item-text">일별/누적 확진자</span>
               </a>
             </li><li class="nav-item w-100">
-              <a class="nav-link" href="/page/index">
+              <a class="nav-link" href="/ASA/asa">
                 <i class="fe fe-layers fe-16"></i>
                 <span class="ml-3 item-text">지역/성별/연령별 확진자</span>
               </a>
