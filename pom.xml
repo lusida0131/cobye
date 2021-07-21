@@ -80,7 +80,7 @@
 					<artifactId>jmxri</artifactId>
 				</exclusion>
 			</exclusions>
-			<scope>runtime</scope>
+			<!-- <scope>runtime</scope> -->
 		</dependency>
 		<!-- lombok 라이브러리 : Getter/Setter, 생성자, toString을 자동 생성 -->
 		<dependency>
