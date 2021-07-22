@@ -3,7 +3,7 @@
 
 <div id="map" style="width:500px;height:400px; margin: auto !important;"></div>
  <script type="text/javascript"
-      src="//dapi.kakao.com/v2/maps/sdk.js?appkey=922ca951b44c6af51770da3a41e90f60"></script>
+      src="//dapi.kakao.com/v2/maps/sdk.js?appkey=922ca951b44c6af51770da3a41e90f60]&libraries=services""></script>
    <script>
    var container = document.getElementById('map');
 	var options = {
