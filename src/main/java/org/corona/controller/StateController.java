@@ -19,7 +19,7 @@ import lombok.extern.log4j.Log4j;
 @Controller
 @RequestMapping
 @AllArgsConstructor
-//@Log4j
+@Log4j
 public class StateController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(StateController.class);
@@ -29,8 +29,12 @@ public class StateController {
 	
 	@GetMapping("/test")
 	public String test() throws IOException {
+
+		String eDay = service.today();	// 기준일 (=종료일)
+		String sDay = service.day(eDay);	// 기준일-10일 (=시작일)
 		
-		service.getCovidStateApi();
+		log.info(service.getCovidStateApi(sDay, eDay));
+		
 		return "/dailyAll/dashboard";
 	}
 	
