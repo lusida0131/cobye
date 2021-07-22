@@ -4,7 +4,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 		<main role="main" class="main-content">
 		
-		<div class="alert alert-primary" role="alert">지역, 성별, 연령별 확진자를 확인할 수 있습니다.</div>
+		<div class="alert alert-primary" role="alert">지역별 확진자를 확인할 수 있습니다.</div>
 		<div class="row justify-content-center">
 			<div class="row">
 					<!-- Recent orders -->
