@@ -4,7 +4,8 @@
 
 <main role="main" class="main-content">
 	<div class="container-fluid">
-		<div class="alert alert-primary" role="alert">일별, 누적 확진자를 확인할 수 있습니다.&nbsp;&nbsp;<a href="/test">TEST GO</a></div>
+		<div class="alert alert-primary" role="alert">일별, 누적 확진자를 확인할 수 있습니다.</div>
+		<div class="alert alert-primary" role="alert"><a href="/testChart">TEST CHART GO</a></div>
 		<div class="row justify-content-center">
 			<div class="col-12">
 				<div class="row">
@@ -110,6 +111,7 @@
 						</form>
 					</div>
 				</div>
+				
 				<!-- charts-->
 				<div class="row my-4">
 					<div class="col-md-12">
@@ -120,6 +122,7 @@
 					<!-- .col -->
 				</div>
 				<!-- end section -->
+				
 				<!-- info small box -->
 				<div class="row">
 					<div class="col-md-6">
@@ -184,69 +187,6 @@
 						<!-- .card -->
 					</div>
 					<!-- .col-md -->
-					
-					<!-- <div class="col-md-6">
-						<div class="card shadow mb-4">
-							<div class="card-body">
-								<div class="card-title">
-									<strong>Region</strong>
-									<a class="float-right small text-muted" href="#!">View all</a>
-								</div>
-								<div class="map-box" style="position: relative; width: 350px; min-height: 130px; margin: 0 auto;">
-									<div id="dataMapUSA"></div>
-								</div>
-								<div class="row align-items-center h-100 my-2">
-									<div class="col">
-										<p class="mb-0">France</p>
-										<span class="my-0 text-muted small">+10%</span>
-									</div>
-									<div class="col-auto text-right">
-										<span>118</span><br />
-										<div class="progress mt-2" style="height: 4px;">
-											<div class="progress-bar" role="progressbar" style="width: 85%" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100"></div>
-										</div>
-									</div>
-								</div>
-								<div class="row align-items-center my-2">
-									<div class="col">
-										<p class="mb-0">Netherlands</p>
-										<span class="my-0 text-muted small">+0.6%</span>
-									</div>
-									<div class="col-auto text-right">
-										<span>1008</span><br />
-										<div class="progress mt-2" style="height: 4px;">
-											<div class="progress-bar" role="progressbar" style="width: 85%" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100"></div>
-										</div>
-									</div>
-								</div>
-								<div class="row align-items-center my-2">
-									<div class="col">
-										<p class="mb-0">Italy</p>
-										<span class="my-0 text-muted small">+1.6%</span>
-									</div>
-									<div class="col-auto text-right">
-										<span>67</span><br />
-										<div class="progress mt-2" style="height: 4px;">
-											<div class="progress-bar" role="progressbar" style="width: 85%" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100"></div>
-										</div>
-									</div>
-								</div>
-								<div class="row align-items-center my-2">
-									<div class="col">
-										<p class="mb-0">Spain</p>
-										<span class="my-0 text-muted small">+118%</span>
-									</div>
-									<div class="col-auto text-right">
-										<span>186</span><br />
-										<div class="progress mt-2" style="height: 4px;">
-											<div class="progress-bar" role="progressbar" style="width: 85%" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100"></div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div> -->
-					<!-- .col -->
 				</div>
 				<!-- / .row -->
 				
@@ -254,176 +194,31 @@
 				<div class="row">
 					<!-- Recent orders -->
 					<div class="col-md-12">
-						<h6 class="mb-3">Last orders</h6>
+						<h4 class="mb-3" style="text-align:center">최근 10일 코로나 확진 현황</h4>
 						<table class="table table-borderless table-striped">
 							<thead>
 								<tr role="row">
-									<th>ID</th>
-									<th>Purchase Date</th>
-									<th>Name</th>
-									<th>Phone</th>
-									<th>Address</th>
-									<th>Total</th>
-									<th>Payment</th>
-									<th>Status</th>
-									<th>Action</th>
+									<th>기준일</th>
+									<th>누적 확진자</th>
+									<th>추가 확진자</th>
+									<th>누적 치료환자</th>
+									<th>추가 치료환자</th>
+									<th>누적 사망자</th>
+									<th>추가 사망자</th>
 								</tr>
 							</thead>
 							<tbody>
+								<c:forEach var="list" items="${alist}">
 								<tr>
-									<th scope="col">1331</th>
-									<td>2020-12-26 01:32:21</td>
-									<td>Kasimir Lindsey</td>
-									<td>(697) 486-2101</td>
-									<td>996-3523 Et Ave</td>
-									<td>$3.64</td>
-									<td>Paypal</td>
-									<td>Shipped</td>
-									<td>
-										<div class="dropdown">
-											<button class="btn btn-sm dropdown-toggle more-vertical" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-												<span class="text-muted sr-only">Action</span>
-											</button>
-											<div class="dropdown-menu dropdown-menu-right">
-												<a class="dropdown-item" href="#">Edit</a>
-												<a class="dropdown-item" href="#">Remove</a>
-												<a class="dropdown-item" href="#">Assign</a>
-											</div>
-										</div>
-									</td>
+									<th scope="col">${list.stateDt}</th>
+									<td>${list.decideCnt}</td>
+									<td>+ ${list.ADecideCnt}</td>
+									<td>${list.careCnt}</td>
+									<td>+ ${list.ACareCnt}</td>
+									<td>${list.deathCnt}</td>
+									<td>+ ${list.ADeathCnt}</td>
 								</tr>
-								<tr>
-									<th scope="col">1156</th>
-									<td>2020-04-21 00:38:38</td>
-									<td>Melinda Levy</td>
-									<td>(748) 927-4423</td>
-									<td>Ap #516-8821 Vitae Street</td>
-									<td>$4.18</td>
-									<td>Paypal</td>
-									<td>Pending</td>
-									<td>
-										<div class="dropdown">
-											<button class="btn btn-sm dropdown-toggle more-vertical" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-												<span class="text-muted sr-only">Action</span>
-											</button>
-											<div class="dropdown-menu dropdown-menu-right">
-												<a class="dropdown-item" href="#">Edit</a>
-												<a class="dropdown-item" href="#">Remove</a>
-												<a class="dropdown-item" href="#">Assign</a>
-											</div>
-										</div>
-									</td>
-								</tr>
-								<tr>
-									<th scope="col">1038</th>
-									<td>2019-06-25 19:13:36</td>
-									<td>Aubrey Sweeney</td>
-									<td>(422) 405-2736</td>
-									<td>Ap #598-7581 Tellus Av.</td>
-									<td>$4.98</td>
-									<td>Credit Card</td>
-									<td>Processing</td>
-									<td>
-										<div class="dropdown">
-											<button class="btn btn-sm dropdown-toggle more-vertical" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-												<span class="text-muted sr-only">Action</span>
-											</button>
-											<div class="dropdown-menu dropdown-menu-right">
-												<a class="dropdown-item" href="#">Edit</a>
-												<a class="dropdown-item" href="#">Remove</a>
-												<a class="dropdown-item" href="#">Assign</a>
-											</div>
-										</div>
-									</td>
-								</tr>
-								<tr>
-									<th scope="col">1227</th>
-									<td>2021-01-22 13:28:00</td>
-									<td>Timon Bauer</td>
-									<td>(690) 965-1551</td>
-									<td>840-2188 Placerat, Rd.</td>
-									<td>$3.46</td>
-									<td>Paypal</td>
-									<td>Processing</td>
-									<td>
-										<div class="dropdown">
-											<button class="btn btn-sm dropdown-toggle more-vertical" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-												<span class="text-muted sr-only">Action</span>
-											</button>
-											<div class="dropdown-menu dropdown-menu-right">
-												<a class="dropdown-item" href="#">Edit</a>
-												<a class="dropdown-item" href="#">Remove</a>
-												<a class="dropdown-item" href="#">Assign</a>
-											</div>
-										</div>
-									</td>
-								</tr>
-								<tr>
-									<th scope="col">1956</th>
-									<td>2019-11-11 16:23:17</td>
-									<td>Kelly Barrera</td>
-									<td>(117) 625-6737</td>
-									<td>816 Ornare, Street</td>
-									<td>$4.16</td>
-									<td>Credit Card</td>
-									<td>Shipped</td>
-									<td>
-										<div class="dropdown">
-											<button class="btn btn-sm dropdown-toggle more-vertical" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-												<span class="text-muted sr-only">Action</span>
-											</button>
-											<div class="dropdown-menu dropdown-menu-right">
-												<a class="dropdown-item" href="#">Edit</a>
-												<a class="dropdown-item" href="#">Remove</a>
-												<a class="dropdown-item" href="#">Assign</a>
-											</div>
-										</div>
-									</td>
-								</tr>
-								<tr>
-									<th scope="col">1669</th>
-									<td>2021-04-12 07:07:13</td>
-									<td>Kellie Roach</td>
-									<td>(422) 748-1761</td>
-									<td>5432 A St.</td>
-									<td>$3.53</td>
-									<td>Paypal</td>
-									<td>Shipped</td>
-									<td>
-										<div class="dropdown">
-											<button class="btn btn-sm dropdown-toggle more-vertical" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-												<span class="text-muted sr-only">Action</span>
-											</button>
-											<div class="dropdown-menu dropdown-menu-right">
-												<a class="dropdown-item" href="#">Edit</a>
-												<a class="dropdown-item" href="#">Remove</a>
-												<a class="dropdown-item" href="#">Assign</a>
-											</div>
-										</div>
-									</td>
-								</tr>
-								<tr>
-									<th scope="col">1909</th>
-									<td>2020-05-14 00:23:11</td>
-									<td>Lani Diaz</td>
-									<td>(767) 486-2253</td>
-									<td>3328 Ut Street</td>
-									<td>$4.29</td>
-									<td>Paypal</td>
-									<td>Pending</td>
-									<td>
-										<div class="dropdown">
-											<button class="btn btn-sm dropdown-toggle more-vertical" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-												<span class="text-muted sr-only">Action</span>
-											</button>
-											<div class="dropdown-menu dropdown-menu-right">
-												<a class="dropdown-item" href="#">Edit</a>
-												<a class="dropdown-item" href="#">Remove</a>
-												<a class="dropdown-item" href="#">Assign</a>
-											</div>
-										</div>
-									</td>
-								</tr>
+								</c:forEach>
 							</tbody>
 						</table>
 					</div>
