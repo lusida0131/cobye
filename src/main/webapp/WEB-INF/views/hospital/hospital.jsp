@@ -18,13 +18,9 @@
 </style>
 <div id="map" style="width:100%;height:100vh;"></div>
  <script type="text/javascript"
-<<<<<<< HEAD
-      src="//dapi.kakao.com/v2/maps/sdk.js?appkey=922ca951b44c6af51770da3a41e90f60]&libraries=services""></script>
-=======
       src="//dapi.kakao.com/v2/maps/sdk.js?appkey=922ca951b44c6af51770da3a41e90f60&libraries=services"></script>
       <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
       
->>>>>>> 6aef8b1c0ed0aa562dfb08d4e7c8046b37ad6581
    <script>
    var container = document.getElementById('map');
 	var options = {
@@ -109,8 +105,7 @@
 		            '        <div class="body">' + 
 		            '            <div class="desc">' + 
 		            '                <div class="ellipsis">' + $(data.positions)[i].주소 +'</div>' + 
-
-		            '				 <div><a href="https://www.kakaocorp.com/main" target="_blank" class="link">길찾기</a></div>' + 
+		            '				 <div><a href="https://map.kakao.com/link/to/'+ $(data.positions)[i].의료기관명  + ',' + result[0].y + ',' + result[0].x + '"' + 'target="_blank" class="link">길찾기</a></div>' + 
 		            '            </div>' + 
 		            '        </div>' + 
 		            '    </div>' +    
