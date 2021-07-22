@@ -11,6 +11,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
+import org.json.JSONObject;
 import org.springframework.stereotype.Service;
 import lombok.AllArgsConstructor;
 
@@ -43,7 +44,7 @@ public class StateServiceImpl implements StateService {
 	}
 	
 	@Override
-	public void getCovidStateApi(String sDay, String eDay) throws IOException {
+	public String getCovidStateApi(String sDay, String eDay) throws IOException {
 		
 		StringBuilder urlBuilder = new StringBuilder("http://openapi.data.go.kr/openapi/service/rest/Covid19/getCovid19InfStateJson"); // URL
         urlBuilder.append("?" + URLEncoder.encode("ServiceKey","UTF-8") + "=A04I%2FDZd%2FTh0VEDOtCHizLhisxQeu9JTtTshqLMp9wJYwCF0wAAbOC5MpN%2BGwGuessW1Z%2FqgzaVdEgJCuPqodw%3D%3D"); // Service Key
@@ -58,7 +59,7 @@ public class StateServiceImpl implements StateService {
         HttpURLConnection conn = (HttpURLConnection) url.openConnection();
         conn.setRequestMethod("GET");
         conn.setRequestProperty("Content-type", "application/json");
-        System.out.println("Response code: " + conn.getResponseCode());
+        System.out.println("getCovidStateApi Response code: " + conn.getResponseCode());
         BufferedReader rd;
         if(conn.getResponseCode() >= 200 && conn.getResponseCode() <= 300) {
             rd = new BufferedReader(new InputStreamReader(conn.getInputStream()));
@@ -72,9 +73,26 @@ public class StateServiceImpl implements StateService {
         }
         rd.close();
         conn.disconnect();
-        System.out.println(sb.toString());
         
-		//return null;
+        String result = sb.toString();
+        
+		return result;
+	}
+
+	@Override
+	public String covidState(String result) {
+		
+		JSONObject jObject = new JSONObject(result);
+		JSONObject responseObject = jObject.getJSONObject("response");
+		// response-header-resultCode,resultMsg
+		// ??? >> numOfRows, pageNo, totalCount
+		// response-body-items-item
+			// item >> seq(게시글번호), stateDt(기준일), stateTime(기준시간)
+			// item >> decideCnt(확진자수), clearCnt(격리해제수), examCnt(검사진행수), deathCnt(사망자수), careCnt(치료중환자수), resultNegCnt(결과음성수)
+			// item >> accExamCnt(누적검사수), accExamCompCnt(누적검사완료수), accDefRate(누적확진률)
+			// item >> createDt(등록시간), updateDt(수정시간)
+		
+		return null;
 	}
 
 

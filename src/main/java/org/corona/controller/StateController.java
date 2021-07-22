@@ -33,7 +33,7 @@ public class StateController {
 		String eDay = service.today();	// 기준일 (=종료일)
 		String sDay = service.day(eDay);	// 기준일-10일 (=시작일)
 		
-		service.getCovidStateApi(sDay, eDay);
+		log.info(service.getCovidStateApi(sDay, eDay));
 		
 		return "/dailyAll/dashboard";
 	}
