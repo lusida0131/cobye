@@ -36,7 +36,7 @@
 		
 		<div class="alert alert-primary" role="alert">지역, 성별, 연령별 확진자를 확인할 수 있습니다.</div>
 		<div class="row justify-content-center">
-		<div id="chart_div" style="width: 1500px; height: 500px; margin: 10px;"></div>
+		<div id="chart_div" style="width: 1125px; height: 500px; margin: 20px;"></div>
 			<div class="row">
 					<div class="col-md-12">
 					<h6 class="mb-3" style="text-align:center;">성별 연령별 확진자 한눈에 보기</h6>
