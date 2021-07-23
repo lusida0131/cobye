@@ -4,6 +4,7 @@ import lombok.Data;
 
 @Data
 public class ASAVO {
+	// 지역
 	String stdDay; 		//기준일시
 	String createDt;	//등록일시
 	int deathCnt;		//사망자 수
