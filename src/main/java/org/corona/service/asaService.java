@@ -11,4 +11,5 @@ public interface asaService {
 	
 	// 연령, 성별
 	public ArrayList<AGEVO> asaage(String startCreateDt, String endCreateDt) throws Exception;
+	
 }

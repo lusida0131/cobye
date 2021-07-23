@@ -12,6 +12,7 @@ import org.corona.domain.AGEVO;
 import org.corona.domain.ASAVO;
 import org.json.JSONArray;
 import org.json.JSONObject;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import lombok.AllArgsConstructor;
@@ -21,7 +22,7 @@ import java.io.BufferedReader;
 @AllArgsConstructor
 @Service
 public class asaServiceImpl implements asaService {
-
+	
 	// 지역
 	@Override
 	public ArrayList<ASAVO> asarea(String startCreateDt, String endCreateDt) throws Exception {
@@ -109,8 +110,8 @@ public class asaServiceImpl implements asaService {
 
 	@Override
 	public ArrayList<AGEVO> asaage(String startCreateDt, String endCreateDt) throws Exception {
-		
-		ArrayList<AGEVO> list = new ArrayList<AGEVO>();
+
+		ArrayList<AGEVO> agelist = new ArrayList<AGEVO>();
 		
 		StringBuilder urlBuilder = new StringBuilder("http://openapi.data.go.kr/openapi/service/rest/Covid19/getCovid19GenAgeCaseInfJson"); /*URL*/
         urlBuilder.append("?" + URLEncoder.encode("ServiceKey","UTF-8") + "=c1sNS0F8dzRRFujphkwtO4hhp5OmOL%2FM8ZD31ri59F0wB%2B3CtmKCGRzhXc43qEHoEvIdMERNztk0vvVjdNKOFA%3D%3D"); /*Service Key*/
@@ -155,9 +156,14 @@ public class asaServiceImpl implements asaService {
 
 				JSONObject bodyObject = responseObject.getJSONObject("body");
 				JSONObject itemsObject = bodyObject.getJSONObject("items");
+
 				String numOfRows = Integer.toString(bodyObject.getInt("numOfRows"));
 				String pageNo = Integer.toString(bodyObject.getInt("pageNo"));
 				String totalCount = Integer.toString(bodyObject.getInt("totalCount"));
+				if(totalCount.equals("0")) {
+
+					agelist = null;
+				} else {
 				
 				// (response -> body -> items -> item(node 2개이상)) 세번째 JSONObject를 가져와서
 				// key-value를 읽습니다.
@@ -177,9 +183,10 @@ public class asaServiceImpl implements asaService {
 					// 사망률
 					avo.setDeathRate(iobj.getFloat("deathRate"));
 					
-					list.add(avo);
+					agelist.add(avo);
 				}
-		System.out.println("list" + list);
-		return list;
+			}
+		System.out.println("agelist : " + agelist);
+		return agelist;
 	}
 }
