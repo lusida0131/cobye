@@ -9,15 +9,45 @@
 
       function drawVisualization() {
         // Some raw data (not necessarily accurate)
-        var blist = '${blist}';
-        var data = google.visualization.arrayToDataTable([
+        
+        var confCase =$('#confCase').val()
+        confCase = parseInt(confCase);
+        console.log("confCase: " + confCase);
+
+        var deathCnt =$('#deathCnt').val() <!-- 사망자 수  -->
+        deathCnt = parseInt(deathCnt); 
+        console.log("deathCnt: " + deathCnt);
+
+        var dateTime =$('#dateTime').val()
+        
+        var defCnt =$('#defCnt').val()
+        defCnt = parseInt(defCnt);        
+        
+        var isolIngCnt =$('#isolIngCnt').val() <!-- 격리해제 -->
+        isolIngCnt = parseInt(isolIngCnt); 
+        
+        var incDec =$('#incDec').val() 
+        incDec = parseInt(incDec);	 <!-- 전일 대비 -->
+        
+        var overFlowCnt =$('#overFlowCnt').val()
+        overFlowCnt = parseInt(overFlowCnt); <!-- 해외 유입 -->
+        
+/*          var data = google.visualization.arrayToDataTable([
           ['구분', 'Bolivia', 'Ecuador', 'Madagascar', 'Papua New Guinea', 'Rwanda', 'Average'],
-          [blist,  165,      938,         522,             998,           450,      614.6],
+          ['2005/06',  165,      938,         522,             998,           450,      614.6],
           ['2005/06',  135,      1120,        599,             1268,          288,      682],
           ['2006/07',  157,      1167,        587,             807,           397,      623],
           ['2007/08',  139,      1110,        615,             968,           215,      609.4],
           ['2008/09',  136,      691,         629,             1026,          366,      569.6]
-        ]);
+        ]);  */
+         var data = google.visualization.arrayToDataTable([
+            ['일시', '확진자', '사망자', '전일 대비', '격리중', '해외 유입 '],
+            [dateTime,  confCase,      defCnt,     incDec,        isolIngCnt,        overFlowCnt]
+        /*     ['2005/06',  135,      1120,        599,             1268,          288,      682],
+            ['2006/07',  157,      1167,        587,             807,           397,      623],
+            ['2007/08',  139,      1110,        615,             968,           215,      609.4],
+            ['2008/09',  136,      691,         629,             1026,          366,      569.6] */
+         ]); 
 
         var options = {
           title : 'Monthly Coffee Production by Country',
@@ -56,8 +86,10 @@
 									<th scope="col">${blist.gubun}</th>
 									<td>${blist.confCaseRate}%</td>
 									<td>+${blist.confCase}</td>
+									<input type="hidden" name="confCase" id="confCase" value="${blist.confCase}">
 									<td>${blist.deathRate}%</td>
 									<td>${blist.death}</td>
+									<input type="hidden" name="death" id="death" value="${blist.death}">
 								</tr>
 							</c:forEach>
 							</tbody>
@@ -150,13 +182,20 @@
 									<th scope="col">${alist.gubun}</th>
 									<fmt:parseDate value="${alist.createDt}" var="dateTime" pattern="yyyy-MM-dd HH:mm:ss" />
 									<td><fmt:formatDate value="${dateTime}" pattern="yyyy-MM-dd"/></td>
-									<td>${alist.defCnt}</td>
-									<td>+${alist.incDec}</td>
-									<td>${alist.isolIngCnt}</td>
-									<td>${alist.isolClearCnt}</td>
-									<td>${alist.deathCnt}</td>
+									<input type="hidden" name="dateTime" id="dateTime" value="${dateTime}">
+									<td>${alist.defCnt}</td>  <!-- 전체 확진자 -->
+									<input type="hidden" name="defCnt" id="defCnt" value="${alist.defCnt}">
+									<td>+${alist.incDec}</td> <!-- 전일 대비 -->
+									<input type="hidden" name="incDec" id="incDec" value="${alist.incDec}">
+									<td>${alist.isolIngCnt}</td> <!-- 격리중 -->
+									<input type="hidden" name="isolIngCnt" id="isolIngCnt" value="${alist.isolIngCnt}">
+									<td>${alist.isolClearCnt}</td> <!-- 격리해제 --> 
+									<input type="hidden" name="isolClearCnt" id="isolClearCnt" value="${alist.isolClearCnt}">
+									<td>${alist.deathCnt}</td>	<!-- 사망자 수  -->
+									<input type="hidden" name="deathCnt" id="deathCnt" value="${alist.deathCnt}">
 									<td>${alist.localOccCnt}</td>
-									<td>${alist.overFlowCnt}</td>
+									<td>${alist.overFlowCnt}</td>	<!-- 해외 유입 -->
+									<input type="hidden" name="overFlowCnt" id="overFlowCnt" value="${alist.overFlowCnt}">
 								</tr>
 							</c:forEach>
 							</tbody>
