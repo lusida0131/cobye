@@ -12,14 +12,6 @@
 		<h4>나도 그래프1</h4>
 		<div id="chart_div" style="width:95%; height: 500px;"></div>
 
-		<!-- <h4>나도 그래프2</h4>
-		<div id="Line_Controls_Chart">
-			<p>라인 차트 생성할 영역</p>
-			<div id="lineChartArea" style="padding: 0px 20px 0px 0px;"></div>
-			<p>컨트롤바를 생성할 영역</p>
-			<div id="controlsArea" style="padding: 0px 20px 0px 0px;"></div>
-		</div> -->
-
 	</div>
 </main>
 
