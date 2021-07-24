@@ -44,6 +44,9 @@ public class AsaController {
 			// 지역
 			ArrayList<ASAVO> alist = asc.asarea(startCreateDt, endCreateDt);
 			model.addAttribute("alist", alist);
+			// 연령별, 성별
+			ArrayList<AGEVO> blist = asc.asaage(startCreateDt, endCreateDt);
+			model.addAttribute("blist", blist);
 		} else {
 			// 오늘 날짜 구하는 식
 			SimpleDateFormat tD = new SimpleDateFormat("yyyyMMdd");

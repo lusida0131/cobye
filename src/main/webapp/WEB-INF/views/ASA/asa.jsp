@@ -9,8 +9,34 @@
 
       function drawVisualization() {
         // Some raw data (not necessarily accurate)
+        for(var i = 0; i < 19; i++) {
+        	var gubun = $('#gubun').val()
         
-        var confCase =$('#confCase').val()
+        	gubun[i]
+        }
+        
+        for(var i = 0; i < 19; i++) {
+        	var incDec = parseInt($('#incDec').val())
+        	/* incDec = parseInt(incDec1);
+        	incDec[i] */
+        }
+        for(var i = 0; i < 19; i++) {
+        	var isolIngCnt = parseInt($('#isolIngCnt').val())
+        	/* isolIngCnt = parseInt(isolIngCnt1);
+        	isolIngCnt[i] */
+        }
+        for(var i = 0; i < 19; i++) {
+        	var isolClearCnt = parseInt($('#isolClearCnt').val())
+        	/* isolClearCnt = parseInt(isolClearCnt1);
+        	isolClearCnt[i] */
+        }
+        for(var i = 0; i < 19; i++) {
+        	var deathCnt[i] = parseInt($('#deathCnt').val())
+        	/* deathCnt = parseInt(deathCnt);
+        	deathCnt[i] */
+        }
+        
+        /* var confCase =$('#confCase').val()
         confCase = parseInt(confCase);
         console.log("confCase: " + confCase);
 
@@ -30,7 +56,7 @@
         incDec = parseInt(incDec);	 <!-- 전일 대비 -->
         
         var overFlowCnt =$('#overFlowCnt').val()
-        overFlowCnt = parseInt(overFlowCnt); <!-- 해외 유입 -->
+        overFlowCnt = parseInt(overFlowCnt); <!-- 해외 유입 --> */
         
 /*          var data = google.visualization.arrayToDataTable([
           ['구분', 'Bolivia', 'Ecuador', 'Madagascar', 'Papua New Guinea', 'Rwanda', 'Average'],
@@ -40,21 +66,43 @@
           ['2007/08',  139,      1110,        615,             968,           215,      609.4],
           ['2008/09',  136,      691,         629,             1026,          366,      569.6]
         ]);  */
-         var data = google.visualization.arrayToDataTable([
-            ['일시', '확진자', '사망자', '전일 대비', '격리중', '해외 유입 '],
-            [dateTime,  confCase,      defCnt,     incDec,        isolIngCnt,        overFlowCnt]
-        /*     ['2005/06',  135,      1120,        599,             1268,          288,      682],
-            ['2006/07',  157,      1167,        587,             807,           397,      623],
-            ['2007/08',  139,      1110,        615,             968,           215,      609.4],
-            ['2008/09',  136,      691,         629,             1026,          366,      569.6] */
+         /* var data = google.visualization.arrayToDataTable */
+         var data = new google.visualization.arrayToDataTable();
+     	data.addColumn('string', '지역');
+     	data.addColumn('number', '확진자');
+     	data.addColumn('number', '격리중');
+     	data.addColumn('number', '격리해제');
+     	data.addColumn('number', '사망자');
+     	
+     	data.addRows([
+            ['지역', '확진자', '격리중', '격리해제', '사망자',],
+            ['검역', incDec[18], isolIngCnt[18], isolClearCnt[18], deathCnt[18]],
+            ['제주', incDec[17], isolIngCnt[17], isolClearCnt[17], deathCnt[17]],
+            ['경남', incDec[16], isolIngCnt[16], isolClearCnt[16], deathCnt[16]],
+            ['경북', incDec[15], isolIngCnt[15], isolClearCnt[15], deathCnt[15]],
+            ['전남', incDec[14], isolIngCnt[14], isolClearCnt[14], deathCnt[14]],
+            ['전북', incDec[13], isolIngCnt[13], isolClearCnt[13], deathCnt[13]],
+            ['충남', incDec[12], isolIngCnt[12], isolClearCnt[12], deathCnt[12]],
+            ['충북', incDec[11], isolIngCnt[11], isolClearCnt[11], deathCnt[11]],
+            ['강원', incDec[10], isolIngCnt[10], isolClearCnt[10], deathCnt[10]],
+            ['경기', incDec[9], isolIngCnt[9], isolClearCnt[9], deathCnt[9]],
+            ['세종', incDec[8], isolIngCnt[8], isolClearCnt[8], deathCnt[8]],
+            ['울산', incDec[7], isolIngCnt[7], isolClearCnt[7], deathCnt[7]],
+            ['대전', incDec[6], isolIngCnt[6], isolClearCnt[6], deathCnt[6]],
+            ['광주', incDec[5], isolIngCnt[5], isolClearCnt[5], deathCnt[5]],
+            ['인천', incDec[4], isolIngCnt[4], isolClearCnt[4], deathCnt[4]],
+            ['대구', incDec[3], isolIngCnt[3], isolClearCnt[3], deathCnt[3]],
+            ['부산', incDec[2], isolIngCnt[2], isolClearCnt[2], deathCnt[2]],
+            ['서울', incDec[1], isolIngCnt[1], isolClearCnt[1], deathCnt[1]],
+            ['합계', incDec[0], isolIngCnt[0], isolClearCnt[0], deathCnt[0]],
          ]); 
 
         var options = {
           title : 'Monthly Coffee Production by Country',
           vAxis: {title: '인원 수'},
-          hAxis: {title: '나이, 성별'},
+          hAxis: {title: '지역'},
           seriesType: 'bars',
-          series: {5: {type: 'line'}}
+          series: {4: {type: 'line'}}
         };
 
         var chart = new google.visualization.ComboChart(document.getElementById('chart_div'));
@@ -73,7 +121,7 @@
 						<table class="table table-borderless table-striped">
 							<thead>
 								<tr role="row">
-									<th>구분</th>
+									<th>연령, 성별</th>
 									<th>확진률</th>
 									<th>확진자</th>
 									<th>사망률</th>
@@ -180,6 +228,7 @@
 							<c:forEach var="alist" items="${alist}">
 								<tr>
 									<th scope="col">${alist.gubun}</th>
+									<input type="hidden" name="gubun" id="gubun" value="${alist.gubun}">
 									<fmt:parseDate value="${alist.createDt}" var="dateTime" pattern="yyyy-MM-dd HH:mm:ss" />
 									<td><fmt:formatDate value="${dateTime}" pattern="yyyy-MM-dd"/></td>
 									<input type="hidden" name="dateTime" id="dateTime" value="${dateTime}">
