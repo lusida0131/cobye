@@ -15,10 +15,10 @@ public class HomeController {
 	
 	
 	
-	@GetMapping("/")
-	public String index() {
-		return "/dailyAll/dashboard";
-	}
+//	@GetMapping("/")
+//	public String index() {
+//		return "/dailyAll/dashboard";
+//	}
 	
 	@GetMapping("/dailyAll/dashboard")
 	public String dashboard() {

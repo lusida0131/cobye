@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.corona.domain.vaccionVO;
 import org.corona.service.VaccineService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -35,6 +36,18 @@ public class VaccionController {
 		log.info(start);
 		
 		ArrayList<vaccionVO> vlist =  service.vaccionApi(start);
+		model.addAttribute("vlist", vlist);
 		return "/vaccine/vac2";
+	}
+	
+	@GetMapping("/vaccine/vacmap")
+	public String vacmap(HttpServletRequest request, Model model) throws IOException{
+		/*
+		 * String start = request.getParameter("from_place"); log.info(start);
+		 * 
+		 * ArrayList<vaccionVO> vlist = service.vaccionApi(start);
+		 * model.addAttribute("vlist", vlist);
+		 */
+		return "/vaccine/vacmap";
 	}
 }
