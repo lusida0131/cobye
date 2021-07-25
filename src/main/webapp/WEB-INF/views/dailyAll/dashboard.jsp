@@ -20,7 +20,8 @@
 									</div>
 									<div class="col pr-0">
 										<p class="small text-muted mb-0">실시간 추가 확진자</p>
-										<span class="h3 mb-0 text-white">&nbsp;<fmt:formatNumber value="${adec1}" pattern="#,###,###" /> 명</span>
+										<a href="/beta"><span class="h3 mb-0 text-white">&nbsp;BETA SERVICE</span></a>
+										<%-- <span class="h3 mb-0 text-white">&nbsp;<fmt:formatNumber value="${adec1}" pattern="#,###,###" /> 명</span> --%>
 										<!-- <span class="small text-muted">+5.5%</span> -->
 									</div>
 								</div>
@@ -116,11 +117,11 @@
 								<div class="row">
 									<div class="col-6 text-center">
 										<p class="text-muted mb-0">어제</p>
-										<h4 class="mb-1">${adec2}</h4>
+										<h4 class="mb-1"><fmt:formatNumber value="${adec2}" pattern="#,###,###" /> 명</h4>
 									</div>
 									<div class="col-6 text-center">
 										<p class="text-muted mb-0">오늘</p>
-										<h4 class="mb-1">${adec1}</h4>
+										<h4 class="mb-1"><fmt:formatNumber value="${adec1}" pattern="#,###,###" /> 명</h4>
 									</div>
 								</div>
 							</div>
@@ -176,11 +177,9 @@
 						<table class="table table-borderless table-striped">
 							<thead>
 								<tr role="row">
-									<th>기준일</th>
+									<th>집계일</th>
 									<th>누적 확진자</th>
 									<th>추가 확진자</th>
-									<th>누적 치료환자</th>
-									<th>추가 치료환자</th>
 									<th>누적 사망자</th>
 									<th>추가 사망자</th>
 								</tr>
@@ -192,8 +191,6 @@
 									<th scope="col"><fmt:formatDate value="${stateDt}" pattern="MM월 dd일" /></th>
 									<td><fmt:formatNumber value="${list.decideCnt}" pattern="#,###,###" /></td>
 									<td>+ <fmt:formatNumber value="${list.ADecideCnt}" pattern="#,###,###" /></td>
-									<td><fmt:formatNumber value="${list.careCnt}" pattern="#,###,###" /></td>
-									<td>+ <fmt:formatNumber value="${list.ACareCnt}" pattern="#,###,###" /></td>
 									<td><fmt:formatNumber value="${list.deathCnt}" pattern="#,###,###" /></td>
 									<td>+ <fmt:formatNumber value="${list.ADeathCnt}" pattern="#,###,###" /></td>
 								</tr>
@@ -318,19 +315,15 @@
             stacked: !1,
             columnWidth: "70%",
             zoom: {
-                enabled: !0
+                enabled: !1
             },
             toolbar: {
                 show: !1
             },
             background: "transparent"
         },
-        dataLabels: {
-            enabled: !1
-        },
-        theme: {
-            mode: colors.chartTheme
-        },
+        dataLabels: { enabled: !1 },
+        theme: { mode: colors.chartTheme },
         responsive: [{
             breakpoint: 480,
             options: {
@@ -365,9 +358,7 @@
                     fontFamily: base.defaultFontFamily
                 }
             },
-            axisBorder: {
-                show: !1
-            }
+            axisBorder: { show: !1 }
         },
         yaxis: {
             labels: {
@@ -407,12 +398,8 @@
                 horizontal: 10,
                 vertical: 0
             },
-            onItemClick: {
-                toggleDataSeries: !0
-            },
-            onItemHover: {
-                highlightDataSeries: !0
-            }
+            onItemClick: { toggleDataSeries: !0 },
+            onItemHover: { highlightDataSeries: !0 }
         },
         fill: {
             opacity: 1,
@@ -424,14 +411,10 @@
             strokeDashArray: 0,
             position: "back",
             xaxis: {
-                lines: {
-                    show: !1
-                }
+                lines: { show: !1 }
             },
             yaxis: {
-                lines: {
-                    show: !0
-                }
+                lines: { show: !0 }
             },
             row: {
                 colors: void 0,

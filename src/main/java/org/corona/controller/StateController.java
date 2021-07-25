@@ -37,9 +37,7 @@ public class StateController {
 		String eDay = service.today();	// 기준일 (=종료일)
 		String sDay = service.day(eDay);	// 기준일-10일 (=시작일)
 		
-		String result = service.getCovidStateApi(sDay, eDay);
-		ArrayList<StateVO> slist = service.covidState(result);
-		//System.out.println("covidState slist: " + slist);
+		ArrayList<StateVO> slist = service.covidState(service.getCovidStateApi(sDay, eDay));
 		ArrayList<StateVO> alist = service.aCovidState(slist);
 		System.out.println("aCovidState alist: " + alist);
 		
@@ -59,9 +57,7 @@ public class StateController {
 	
 	@GetMapping("/beta")
 	public String beta(Model model) throws IOException {
-		
 		//service.Crawler();
-		
 		ArrayList<DisasterVO> dlist = service.DisasterMsg(service.getDisasterMsgApi());
 		//System.out.println("DisasterMsg dlist: " + dlist);
 		model.addAttribute("dlist", dlist);
