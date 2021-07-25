@@ -148,7 +148,7 @@
 						</table>
 						</c:when>
 						<c:when test="${list eq '유감'}">
-						<h1 style="text-align: center;">지역, 성별, 연령별 확진자 정보의 업데이트가 되지 않았습니다.(유감)
+						<h1 style="text-align: center;">성별, 연령별 확진자 정보의 업데이트가 되지 않았습니다.(유감)
 							<br>주말에는 업데이트가 어렵습니다.(유감)</h1>
 						</c:when>
 					</c:choose>
