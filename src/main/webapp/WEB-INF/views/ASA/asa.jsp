@@ -2,120 +2,86 @@
 <%@ include file="../layout/header.jsp"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-<!-- <script type="text/javascript">
+
+<script type="text/javascript">
       google.charts.load('current', {'packages':['corechart']});
       google.charts.setOnLoadCallback(drawVisualization);
 
       function drawVisualization() {
         // Some raw data (not necessarily accurate)
-        for(var i = 0; i < 19; i++) {
-        	var gubun = $('#gubun')
+       /*  for(var i = 0; i < 19; i++) {
+           var gubun = $('#gubun').val()
         
-        	gubun[i]
-        }
+           gubun[i]
+        } */
         
         for(var i = 0; i < 19; i++) {
-        	var incDec = parseInt($('#incDec'))
-        	/* incDec = parseInt(incDec1);
-        	incDec[i] */
-        }
-        for(var i = 0; i < 19; i++) {
-        	var isolIngCnt = parseInt($('#isolIngCnt'))
-        	/* isolIngCnt = parseInt(isolIngCnt1);
-        	isolIngCnt[i] */
+           incDec[i] = parseInt($('#incDec').val())
+           console.log(incDec[i])
+           /* incDec = parseInt(incDec1);
+           incDec[i] */
         }
         for(var i = 0; i < 19; i++) {
-        	var isolClearCnt = parseInt($('#isolClearCnt'))
-        	/* isolClearCnt = parseInt(isolClearCnt1);
-        	isolClearCnt[i] */
+           isolIngCnt[i] = parseInt($('#isolIngCnt').val())
+           /* isolIngCnt = parseInt(isolIngCnt1);
+           isolIngCnt[i] */
         }
         for(var i = 0; i < 19; i++) {
-        	var deathCnt[i] = parseInt($('#deathCnt'))
-        	/* deathCnt = parseInt(deathCnt);
-        	deathCnt[i] */
+           isolClearCnt[i] = parseInt($('#isolClearCnt').val())
+           /* isolClearCnt = parseInt(isolClearCnt1);
+           isolClearCnt[i] */
+        }
+        for(var i = 0; i < 19; i++) {
+           deathCnt[i] = parseInt($('#deathCnt').val())
+           /* deathCnt = parseInt(deathCnt);
+           deathCnt[i] */
         }
         
-        /* var confCase =$('#confCase').val()
-        confCase = parseInt(confCase);
-        console.log("confCase: " + confCase);
-
-        var deathCnt =$('#deathCnt').val() 
-        deathCnt = parseInt(deathCnt); 
-        console.log("deathCnt: " + deathCnt);
-
-        var dateTime =$('#dateTime').val()
-        
-        var defCnt =$('#defCnt').val()
-        defCnt = parseInt(defCnt);        
-        
-        var isolIngCnt =$('#isolIngCnt').val() 
-        isolIngCnt = parseInt(isolIngCnt); 
-        
-        var incDec =$('#incDec').val() 
-        incDec = parseInt(incDec);	 
-        
-        var overFlowCnt =$('#overFlowCnt').val()
-        overFlowCnt = parseInt(overFlowCnt);  */
-        
-/*          var data = google.visualization.arrayToDataTable([
-          ['구분', 'Bolivia', 'Ecuador', 'Madagascar', 'Papua New Guinea', 'Rwanda', 'Average'],
-          ['2005/06',  165,      938,         522,             998,           450,      614.6],
-          ['2005/06',  135,      1120,        599,             1268,          288,      682],
-          ['2006/07',  157,      1167,        587,             807,           397,      623],
-          ['2007/08',  139,      1110,        615,             968,           215,      609.4],
-          ['2008/09',  136,      691,         629,             1026,          366,      569.6]
-        ]);  */
-         /* var data = google.visualization.arrayToDataTable */
-         /* var data = new google.visualization.arrayToDataTable(); */
-     	/* data.addColumn('string', '지역');
-     	data.addColumn('number', '확진자');
-     	data.addColumn('number', '격리중');
-     	data.addColumn('number', '격리해제');
-     	data.addColumn('number', '사망자');
-     	
-     	data.addRows */
-     	var data = google.visualization.arrayToDataTable([
-            ['지역', '확진자', '격리중', '격리해제', '사망자',],
-            ['검역', incDec[18], isolIngCnt[18], isolClearCnt[18], deathCnt[18]],
-            ['제주', incDec[17], isolIngCnt[17], isolClearCnt[17], deathCnt[17]],
-            ['경남', incDec[16], isolIngCnt[16], isolClearCnt[16], deathCnt[16]],
-            ['경북', incDec[15], isolIngCnt[15], isolClearCnt[15], deathCnt[15]],
-            ['전남', incDec[14], isolIngCnt[14], isolClearCnt[14], deathCnt[14]],
-            ['전북', incDec[13], isolIngCnt[13], isolClearCnt[13], deathCnt[13]],
-            ['충남', incDec[12], isolIngCnt[12], isolClearCnt[12], deathCnt[12]],
-            ['충북', incDec[11], isolIngCnt[11], isolClearCnt[11], deathCnt[11]],
-            ['강원', incDec[10], isolIngCnt[10], isolClearCnt[10], deathCnt[10]],
-            ['경기', incDec[9], isolIngCnt[9], isolClearCnt[9], deathCnt[9]],
-            ['세종', incDec[8], isolIngCnt[8], isolClearCnt[8], deathCnt[8]],
-            ['울산', incDec[7], isolIngCnt[7], isolClearCnt[7], deathCnt[7]],
-            ['대전', incDec[6], isolIngCnt[6], isolClearCnt[6], deathCnt[6]],
-            ['광주', incDec[5], isolIngCnt[5], isolClearCnt[5], deathCnt[5]],
-            ['인천', incDec[4], isolIngCnt[4], isolClearCnt[4], deathCnt[4]],
-            ['대구', incDec[3], isolIngCnt[3], isolClearCnt[3], deathCnt[3]],
-            ['부산', incDec[2], isolIngCnt[2], isolClearCnt[2], deathCnt[2]],
-            ['서울', incDec[1], isolIngCnt[1], isolClearCnt[1], deathCnt[1]],
-            ['합계', incDec[0], isolIngCnt[0], isolClearCnt[0], deathCnt[0]],
-         ]); 
-
-        var options = {
-          title : 'Monthly Coffee Production by Country',
-          vAxis: {title: '인원 수'},
-          hAxis: {title: '지역'},
-          seriesType: 'bars',
-          series: {4: {type: 'line'}}
-        };
-
-        var chart = new google.visualization.ComboChart(document.getElementById('chart_div'));
-        chart.draw(data, options);
-      } -->
+         var data = google.visualization.arrayToDataTable([
+            ['구분','확진자', '격리중', '사망자'],
+               ['서울', Number(incDec[17].value), Number(isolIngCnt[17].value), Number(deathCnt[17].value)],
+               ['부산',incDec[16].value, isolIngCnt[16].value, deathCnt[16].value],
+               ['대구',incDec[15].value, isolIngCnt[15].value, deathCnt[15].value],
+               ['인천',incDec[14].value, isolIngCnt[14].value, deathCnt[14].value],
+               ['광주',incDec[13].value, isolIngCnt[13].value, deathCnt[13].value],
+               ['대전',incDec[12].value, isolIngCnt[12].value, deathCnt[12].value],
+               ['울산',incDec[11].value, isolIngCnt[11], deathCnt[11].value],
+               ['세종',incDec[10].value, isolIngCnt[10], deathCnt[10].value],
+               ['경기',incDec[9].value, isolIngCnt[9].value, deathCnt[9].value],
+               ['강원',incDec[8].value, isolIngCnt[8].value, deathCnt[8].value],
+               ['충북',incDec[7].value, isolIngCnt[7].value, deathCnt[7].value],
+               ['충남',incDec[6].value, isolIngCnt[6].value, deathCnt[6].value],
+               ['전북',incDec[5].value, isolIngCnt[5].value, deathCnt[5].value],
+               ['전남',incDec[4].value, isolIngCnt[4].value, deathCnt[4].value],
+               ['경북',incDec[3].value, isolIngCnt[3].value, deathCnt[3].value],
+               ['경남',incDec[2].value, isolIngCnt[2].value, deathCnt[2].value],
+               ['제주',incDec[1].value, isolIngCnt[1].value, deathCnt[1].value],
+               ['검역',incDec[0].value, isolIngCnt[0].value, deathCnt[0].value],
+            ]); 
+         var options = {
+               title : '전국 확진자 한눈에 보기',
+               vAxis: {title: '인원'},
+               hAxis: {title: '지역'}, 
+               seriesType: 'bars',
+               series: {5: {type: 'line'}}
+            };
+         
+         var chart = new google.visualization.ComboChart(document.getElementById('chart_div'));
+         chart.draw(data, options);
+      }
+      
+      
+      
+      
 </script>
 		
 		<main role="main" class="main-content">
 		<div class="container-fluid">
 		<div class="alert alert-primary" role="alert">지역, 성별, 연령별 확진자를 확인할 수 있습니다.</div>
 		<div class="row justify-content-center">
-		<!-- <div id="chart_div" style="width: 1125px; height: 500px; margin: 20px;"></div> -->
+		<div id="chart_div" style="width: 1125px; height: 500px; margin: 20px;"></div>
 			<div class="row">
 					<div class="col-md-12">
 					<h6 class="mb-3" style="text-align:center;">성별 연령별 확진자 한눈에 보기</h6>
