@@ -3,35 +3,35 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-<script type="text/javascript">
+<!-- <script type="text/javascript">
       google.charts.load('current', {'packages':['corechart']});
       google.charts.setOnLoadCallback(drawVisualization);
 
       function drawVisualization() {
         // Some raw data (not necessarily accurate)
         for(var i = 0; i < 19; i++) {
-        	var gubun = $('#gubun').val()
+        	var gubun = $('#gubun')
         
         	gubun[i]
         }
         
         for(var i = 0; i < 19; i++) {
-        	var incDec = parseInt($('#incDec').val())
+        	var incDec = parseInt($('#incDec'))
         	/* incDec = parseInt(incDec1);
         	incDec[i] */
         }
         for(var i = 0; i < 19; i++) {
-        	var isolIngCnt = parseInt($('#isolIngCnt').val())
+        	var isolIngCnt = parseInt($('#isolIngCnt'))
         	/* isolIngCnt = parseInt(isolIngCnt1);
         	isolIngCnt[i] */
         }
         for(var i = 0; i < 19; i++) {
-        	var isolClearCnt = parseInt($('#isolClearCnt').val())
+        	var isolClearCnt = parseInt($('#isolClearCnt'))
         	/* isolClearCnt = parseInt(isolClearCnt1);
         	isolClearCnt[i] */
         }
         for(var i = 0; i < 19; i++) {
-        	var deathCnt[i] = parseInt($('#deathCnt').val())
+        	var deathCnt[i] = parseInt($('#deathCnt'))
         	/* deathCnt = parseInt(deathCnt);
         	deathCnt[i] */
         }
@@ -40,7 +40,7 @@
         confCase = parseInt(confCase);
         console.log("confCase: " + confCase);
 
-        var deathCnt =$('#deathCnt').val() <!-- 사망자 수  -->
+        var deathCnt =$('#deathCnt').val() 
         deathCnt = parseInt(deathCnt); 
         console.log("deathCnt: " + deathCnt);
 
@@ -49,14 +49,14 @@
         var defCnt =$('#defCnt').val()
         defCnt = parseInt(defCnt);        
         
-        var isolIngCnt =$('#isolIngCnt').val() <!-- 격리해제 -->
+        var isolIngCnt =$('#isolIngCnt').val() 
         isolIngCnt = parseInt(isolIngCnt); 
         
         var incDec =$('#incDec').val() 
-        incDec = parseInt(incDec);	 <!-- 전일 대비 -->
+        incDec = parseInt(incDec);	 
         
         var overFlowCnt =$('#overFlowCnt').val()
-        overFlowCnt = parseInt(overFlowCnt); <!-- 해외 유입 --> */
+        overFlowCnt = parseInt(overFlowCnt);  */
         
 /*          var data = google.visualization.arrayToDataTable([
           ['구분', 'Bolivia', 'Ecuador', 'Madagascar', 'Papua New Guinea', 'Rwanda', 'Average'],
@@ -67,14 +67,15 @@
           ['2008/09',  136,      691,         629,             1026,          366,      569.6]
         ]);  */
          /* var data = google.visualization.arrayToDataTable */
-         var data = new google.visualization.arrayToDataTable();
-     	data.addColumn('string', '지역');
+         /* var data = new google.visualization.arrayToDataTable(); */
+     	/* data.addColumn('string', '지역');
      	data.addColumn('number', '확진자');
      	data.addColumn('number', '격리중');
      	data.addColumn('number', '격리해제');
      	data.addColumn('number', '사망자');
      	
-     	data.addRows([
+     	data.addRows */
+     	var data = google.visualization.arrayToDataTable([
             ['지역', '확진자', '격리중', '격리해제', '사망자',],
             ['검역', incDec[18], isolIngCnt[18], isolClearCnt[18], deathCnt[18]],
             ['제주', incDec[17], isolIngCnt[17], isolClearCnt[17], deathCnt[17]],
@@ -107,17 +108,20 @@
 
         var chart = new google.visualization.ComboChart(document.getElementById('chart_div'));
         chart.draw(data, options);
-      }
+      } -->
 </script>
 		
 		<main role="main" class="main-content">
-		
+		<div class="container-fluid">
 		<div class="alert alert-primary" role="alert">지역, 성별, 연령별 확진자를 확인할 수 있습니다.</div>
 		<div class="row justify-content-center">
-		<div id="chart_div" style="width: 1125px; height: 500px; margin: 20px;"></div>
+		<!-- <div id="chart_div" style="width: 1125px; height: 500px; margin: 20px;"></div> -->
 			<div class="row">
 					<div class="col-md-12">
 					<h6 class="mb-3" style="text-align:center;">성별 연령별 확진자 한눈에 보기</h6>
+					<c:set var="list" value="${blist}"/>
+					<c:choose>
+						<c:when test="${list ne '유감'}">
 						<table class="table table-borderless table-striped">
 							<thead>
 								<tr role="row">
@@ -142,6 +146,12 @@
 							</c:forEach>
 							</tbody>
 						</table>
+						</c:when>
+						<c:when test="${list eq '유감'}">
+						<h1 style="text-align: center;">지역, 성별, 연령별 확진자 정보의 업데이트가 되지 않았습니다.(유감)
+							<br>주말에는 업데이트가 어렵습니다.(유감)</h1>
+						</c:when>
+					</c:choose>
 				</div>
 <%-- 				<!-- 퍼센트 -->
                 <div class="col-md-12 col-lg-4">
@@ -252,6 +262,7 @@
 				</div>
 					</div>
 					<!-- / .col-md-3 -->
+					</div>
 					</div>
 			</main>
 <%@ include file="../layout/footer.jsp"%>

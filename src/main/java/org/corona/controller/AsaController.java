@@ -44,9 +44,15 @@ public class AsaController {
 			// 지역
 			ArrayList<ASAVO> alist = asc.asarea(startCreateDt, endCreateDt);
 			model.addAttribute("alist", alist);
-			// 연령별, 성별
-			ArrayList<AGEVO> blist = asc.asaage(startCreateDt, endCreateDt);
-			model.addAttribute("blist", blist);
+			System.out.println("null: " + asc.asaage(startCreateDt, endCreateDt));
+			if(asc.asaage(startCreateDt, endCreateDt) == null) {
+				String blist = "유감";
+				model.addAttribute("blist", blist);
+			} else {
+				// 연령별, 성별
+				ArrayList<AGEVO> blist = asc.asaage(startCreateDt, endCreateDt);
+				model.addAttribute("blist", blist);
+			}
 		} else {
 			// 오늘 날짜 구하는 식
 			SimpleDateFormat tD = new SimpleDateFormat("yyyyMMdd");
@@ -58,7 +64,7 @@ public class AsaController {
 			// 지역
 			ArrayList<ASAVO> alist = asc.asarea(startCreateDt, endCreateDt);
 			model.addAttribute("alist", alist);
-			if((asc.asaage(startCreateDt, endCreateDt)) == null) {
+			if(asc.asaage(startCreateDt, endCreateDt) == null) {
 				// 어제 날짜 구하는 식
 				SimpleDateFormat yD = new SimpleDateFormat("yyyyMMdd");
 				Date yDate = new Date();
@@ -67,15 +73,25 @@ public class AsaController {
 				// 어제 날짜의 데이터
 				String sc = yD.format(yDate);
 				String ec = yD.format(yDate);
-				ArrayList<AGEVO> blist = asc.asaage(sc, ec);
-				model.addAttribute("blist", blist);
+				/*
+				 * ArrayList<AGEVO> blist = asc.asaage(sc, ec); model.addAttribute("blist",
+				 * blist);
+				 */
+				if(asc.asaage(startCreateDt, endCreateDt) == null) {
+					String blist = "유감";
+					model.addAttribute("blist", blist);
+				} else {
+					// 연령별, 성별
+					ArrayList<AGEVO> blist = asc.asaage(startCreateDt, endCreateDt);
+					model.addAttribute("blist", blist);
+				}
 			} else {
 				// 연령별, 성별
 				ArrayList<AGEVO> blist = asc.asaage(startCreateDt, endCreateDt);
 				model.addAttribute("blist", blist);
 			}
 		}
-					
+
 		return "/ASA/asa";
 		
 	}
