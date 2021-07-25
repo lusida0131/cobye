@@ -4,6 +4,7 @@ package org.corona.service;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
@@ -13,9 +14,15 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+import org.corona.domain.DisasterVO;
 import org.corona.domain.StateVO;
 import org.json.JSONArray;
 import org.json.JSONObject;
+import org.jsoup.Connection;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
 import org.springframework.stereotype.Service;
 import lombok.AllArgsConstructor;
 
@@ -87,9 +94,7 @@ public class StateServiceImpl implements StateService {
         rd.close();
         conn.disconnect();
         
-        String result = sb.toString();
-        
-		return result;
+		return sb.toString();
 	}
 
 	@Override
@@ -116,9 +121,7 @@ public class StateServiceImpl implements StateService {
 	    for (int i = 0; i < itemArray.length(); i++) {
 	    	
 	    	StateVO svo = new StateVO();
-	    	
 	    	JSONObject iobj = itemArray.getJSONObject(i);
-	    	//System.out.println("iobj(" + i + "): " + iobj.toString());
 	        
 	    	// 게시글번호
 	        svo.setSeq(iobj.getInt("seq"));
@@ -175,5 +178,143 @@ public class StateServiceImpl implements StateService {
 		return list;
 	}
 
+	
+	@Override
+	public void Crawler() {
+		
+		// 대상 URL
+		//String URL = "https://m.news.naver.com/covid19/live.nhn";
+		String URL = "https://corona-live.com/";
+		
+		try {
+            // Connection 생성
+            Connection conn = Jsoup.connect(URL);
+            // HTML 파싱
+            Document html = conn.get(); // conn.post();
+            // HTML 출력
+            System.out.println(html.toString()); 
+            
+            // Attribute 탐색
+//            System.out.println("[Attribute 탐색]");
+//            Elements fileblocks = html.getElementsByClass("fileblock");
+//            for( Element fileblock : fileblocks ) {
+//                Elements files = fileblock.getElementsByTag("a");
+//                for( Element elm : files ) {
+//	                String text = elm.text();
+//	                String href = elm.attr("href");
+//	                
+//	                System.out.println( text+" > "+href );
+//                }
+//            }
+            // CSS Selector 탐색
+//            System.out.println("\n[CSS Selector 탐색]");
+//            Elements files = html.select(".fileblock a");
+//            for( Element elm : files ) {
+//                String text = elm.text();
+//                String href = elm.attr("href");
+//                
+//                System.out.println( text+" > "+href );
+//            }
+            
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+	}
+
+	@Override
+	public String getDisasterMsgApi() throws IOException {
+		
+		StringBuilder urlBuilder = new StringBuilder("http://apis.data.go.kr/1741000/DisasterMsg3/getDisasterMsg1List"); // URL
+        urlBuilder.append("?" + URLEncoder.encode("ServiceKey","UTF-8") + "=A04I%2FDZd%2FTh0VEDOtCHizLhisxQeu9JTtTshqLMp9wJYwCF0wAAbOC5MpN%2BGwGuessW1Z%2FqgzaVdEgJCuPqodw%3D%3D"); // Service Key
+        urlBuilder.append("&" + URLEncoder.encode("ServiceKey","UTF-8") + "=" + URLEncoder.encode("인증키", "UTF-8")); // 공공데이터포털에서 받은 인증키
+        urlBuilder.append("&" + URLEncoder.encode("pageNo","UTF-8") + "=" + URLEncoder.encode("1", "UTF-8")); // 페이지번호
+        urlBuilder.append("&" + URLEncoder.encode("numOfRows","UTF-8") + "=" + URLEncoder.encode("200", "UTF-8")); // 한 페이지 결과 수
+        urlBuilder.append("&" + URLEncoder.encode("type","UTF-8") + "=" + URLEncoder.encode("json", "UTF-8")); // 호출문서 형식
+        URL url = new URL(urlBuilder.toString());
+        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+        conn.setRequestMethod("GET");
+        conn.setRequestProperty("Content-type", "application/json");
+        System.out.println("Response code: " + conn.getResponseCode());
+        BufferedReader rd;
+        if(conn.getResponseCode() >= 200 && conn.getResponseCode() <= 300) {
+            rd = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+        } else {
+            rd = new BufferedReader(new InputStreamReader(conn.getErrorStream()));
+        }
+        StringBuilder sb = new StringBuilder();
+        String line;
+        while ((line = rd.readLine()) != null) {
+            sb.append(line);
+        }
+        rd.close();
+        conn.disconnect();
+		
+		return sb.toString();
+	}
+
+	@Override
+	public ArrayList<DisasterVO> DisasterMsg(String result) {
+		
+		ArrayList<DisasterVO> list = new ArrayList<DisasterVO>();
+		
+		int count = 0;
+		
+		SimpleDateFormat fmt = new SimpleDateFormat("yyyy/MM/dd");
+		String today = fmt.format(Calendar.getInstance().getTime());
+		
+		Calendar cal = Calendar.getInstance();
+        cal.setTime(new Date());
+        cal.add(Calendar.DATE, -1);
+        SimpleDateFormat yfmt = new SimpleDateFormat("dd");
+        String yday = yfmt.format(cal.getTime());
+		
+		JSONObject jObject = new JSONObject(result);
+		JSONArray DisasterArray = jObject.getJSONArray("DisasterMsg");
+		// response - head -> list_total_count, RESULT		// RESULT -> CODE, MESSAGE
+		// response - row -> create_date, location_id, location_name, md101_sn, msg, send_platform
+		JSONObject rowObject = DisasterArray.getJSONObject(1);
+		JSONArray rowArray = rowObject.getJSONArray("row");
+	    
+	    for (int i = 0; i < rowArray.length(); i++) {
+	    	
+	    	DisasterVO dvo = new DisasterVO();
+	    	
+	    	JSONObject iobj = rowArray.getJSONObject(i);
+	    	//System.out.println("iobj(" + i + "): " + iobj.toString());
+	    	
+	    	//System.out.println("===== today || createDate:  " + today + "  ||  " + (iobj.getString("create_date")).substring(0,10));
+	    	//System.out.println("===== if: " + (iobj.getString("create_date")).substring(0,10).equals(today));
+	    	if((iobj.getString("create_date")).substring(0,10).equals(today) == false) {
+	    		continue;
+	    	}
+	    	if( (iobj.getString("msg")).contains("확진")==false || (iobj.getString("msg")).contains("명")==false
+	    			|| (iobj.getString("msg")).contains(" 0시")==true || (iobj.getString("msg")).contains("00시")==true
+	    			|| (iobj.getString("msg")).contains("24시")==true || (iobj.getString("msg")).contains(yday)==true
+	    			|| (iobj.getString("location_name").contains("전체")==true)) {
+	    		continue;
+	    	}
+	    	
+	    	// 생성일시
+	    	dvo.setCreate_date(iobj.getString("create_date"));
+	    	// 수신지역 코드
+	    	dvo.setLocation_id(iobj.getString("location_id"));
+	        // 수신지역 이름
+	    	dvo.setLocation_name(iobj.getString("location_name"));
+	        // 일련번호
+	    	dvo.setMd101_sn(iobj.getString("md101_sn"));
+	        // 내용
+	    	dvo.setMsg(iobj.getString("msg"));
+	        // 발신처
+	    	dvo.setSend_platform(iobj.getString("send_platform"));
+	        
+	        //System.out.println("(" + i + ") 번째 Disaster row: " + dvo);
+	        list.add(dvo);
+	        count++;
+	        
+	    }
+	    System.out.println("DisasterMsg coutn: " + count);
+		return list;
+	}
+	
 
 }
