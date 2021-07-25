@@ -17,7 +17,9 @@
     .info:after {content: '';position: absolute;margin-left: -12px;left: 50%;bottom: 0;width: 22px;height: 12px;background: url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/vertex_white.png')}
     .info .link {color: #5085BB;}
 </style>
-<div id="map" style="width:100%;height:100vh;"></div>
+<main role="main" class="main-content">
+	<div class="container-fluid">
+			<div id="map" style="width:100%;height:100vh;"></div>
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
  <script type="text/javascript"
       src="//dapi.kakao.com/v2/maps/sdk.js?appkey=922ca951b44c6af51770da3a41e90f60&libraries=services,clusterer"></script>
@@ -44,10 +46,21 @@
 		displayMarker(locPosition, message);
 	}
 	function displayMarker(locPosition, message) {
+		
+		var imageSrc = '${pageContext.request.contextPath}/resources/image/map-marker-icon_34392.png', // 마커이미지의 주소입니다    
+	    imageSize = new kakao.maps.Size(44, 44), // 마커이미지의 크기입니다
+	    imageOption = {offset: new kakao.maps.Point(22, 44)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
+	      
+	// 마커의 이미지정보를 가지고 있는 마커이미지를 생성합니다
+	var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption),
+	markerPosition = new kakao.maps.LatLng(37.54699, 127.09598); // 마커가 표시될 위치입니다
+	
+	
 		// 마커를 생성합니다
 	    var marker = new kakao.maps.Marker({  
 	        map: map, 
 	        position: locPosition,
+	        image : markerImage
 	        
 	    }); 
 	    
@@ -57,7 +70,8 @@
 	    // 인포윈도우를 생성합니다
 	    var infowindow = new kakao.maps.InfoWindow({
 	        content : iwContent,
-	        removable : iwRemoveable
+	        removable : iwRemoveable,
+	        position: locPosition
 	    });
 	    
 	    // 인포윈도우를 마커위에 표시합니다 
@@ -198,5 +212,8 @@
   
    </script>
    </body>
+
+	</div>
+</main>
 
 <%@ include file="../layout/footer.jsp"%>
