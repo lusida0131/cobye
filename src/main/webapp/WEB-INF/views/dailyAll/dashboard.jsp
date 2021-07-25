@@ -4,113 +4,96 @@
 
 <main role="main" class="main-content">
 	<div class="container-fluid">
-		<div class="alert alert-info" role="alert"><span class="fe fe-alert-circle fe-16 mr-2"></span>COBYE의 데이터는 재사용이 가능하며, 공적인 효력이 없음을 안내합니다.&nbsp;&nbsp;또한 해당 데이터를 사용하면서 발생하는 문제는 전적으로 사용자에게 있습니다.</div>
-		<div class="alert alert-primary" role="alert"><a href="/testChart">TEST CHART GO</a></div><br>
+		<div class="alert alert-info" role="alert">
+			<span class="fe fe-alert-circle fe-16 mr-2"></span>COBYE의 데이터는 재사용이 가능하며, 공적인 효력이 없음을 안내합니다.&nbsp;&nbsp;또한 해당 데이터를 사용하면서 발생하는 문제는 전적으로 사용자에게 있습니다.
+		</div><br><br>
 		<div class="row justify-content-center">
 			<div class="col-12">
 				<div class="row">
-					<div class="col-md-6 col-xl-6 mb-4">
-						<div class="card shadow bg-primary text-white border-0">
-							<div class="card-body">
-								<div class="row align-items-center">
-									<div class="col-3 text-center">
-										<span class="circle circle-sm bg-primary-light">
-											<i class="fe fe-16 fe-alert-circle text-white mb-0"></i>
-										</span>
-									</div>
-									<div class="col pr-0">
-										<p class="small text-muted mb-0">실시간 추가 확진자</p>
-										<a href="/beta"><span class="h3 mb-0 text-white">&nbsp;BETA SERVICE</span></a>
-										<%-- <span class="h3 mb-0 text-white">&nbsp;<fmt:formatNumber value="${adec1}" pattern="#,###,###" /> 명</span> --%>
-										<!-- <span class="small text-muted">+5.5%</span> -->
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-6 col-xl-6 mb-4">
-						<div class="card shadow border-0">
-							<div class="card-body">
-								<div class="row align-items-center">
-									<div class="col-3 text-center">
-										<span class="circle circle-sm bg-primary">
-											<i class="fe fe-16 fe-filter text-white mb-0"></i>
-										</span>
-									</div>
-									<div class="col pr-0">
-										<p class="small text-muted mb-0">어제 확진자</p>
-										<span class="h3 mb-0">&nbsp;<fmt:formatNumber value="${adec1}" pattern="#,###,###" /> 명</span>
-										<span class="small text-success">+16.5%</span>
+					<div class="col-md-6">
+						<div class="col-xl-12 mb-4">
+							<div class="card shadow bg-primary text-white border-0">
+								<div class="card-body">
+									<div class="row align-items-center">
+										<div class="col-3 text-center">
+											<span class="circle circle-sm bg-primary-light">
+												<i class="fe fe-16 fe-alert-circle text-white mb-0"></i>
+											</span>
+										</div>
+										<div class="col pr-0">
+											<p class="small text-muted mb-0">실시간 추가 확진자</p>
+											<a href="/beta"><span class="h3 mb-0 text-white">&nbsp;BETA SERVICE</span></a>
+											<%-- <span class="h3 mb-0 text-white">&nbsp;<fmt:formatNumber value="${adec1}" pattern="#,###,###" /> 명</span> --%>
+											<!-- <span class="small text-muted">+5.5%</span> -->
+										</div>
 									</div>
 								</div>
 							</div>
 						</div>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-md-6 col-xl-6 mb-4">
-						<div class="card shadow border-0">
-							<div class="card-body">
-								<div class="row align-items-center">
-									<div class="col-3 text-center">
-										<span class="circle circle-sm bg-primary">
-											<i class="fe fe-16 fe-bar-chart text-white mb-0"></i>
-										</span>
+						<div class="col-xl-12 mb-4">
+							<div class="card shadow border-0">
+								<div class="card-body">
+									<div class="row align-items-center">
+										<div class="col-3 text-center">
+											<span class="circle circle-sm bg-primary">
+												<i class="fe fe-16 fe-filter text-white mb-0"></i>
+											</span>
+										</div>
+										<div class="col pr-0">
+											<p class="small text-muted mb-0">어제 확진자</p>
+											<span class="h3 mb-0">&nbsp;<fmt:formatNumber value="${adec1}" pattern="#,###,###" /> 명</span>
+											<!-- <span class="small text-success">+16.5%</span> -->
+										</div>
 									</div>
-									<div class="col">
-										<p class="small text-muted mb-0">누적 확진자</p>
-										<div class="row align-items-center no-gutters">
-											<div class="col-auto">
-												<span class="h3 mr-2 mb-0">&nbsp;<fmt:formatNumber value="${dec}" pattern="#,###,###" /> 명</span>
+								</div>
+							</div>
+						</div>
+						<div class="col-xl-12 mb-4">
+							<div class="card shadow border-0">
+								<div class="card-body">
+									<div class="row align-items-center">
+										<div class="col-3 text-center">
+											<span class="circle circle-sm bg-primary">
+												<i class="fe fe-16 fe-bar-chart text-white mb-0"></i>
+											</span>
+										</div>
+										<div class="col">
+											<p class="small text-muted mb-0">누적 확진자</p>
+											<div class="row align-items-center no-gutters">
+												<div class="col-auto">
+													<span class="h3 mr-2 mb-0">&nbsp;<fmt:formatNumber value="${dec}" pattern="#,###,###" /> 명</span>
+												</div>
 											</div>
 										</div>
 									</div>
 								</div>
 							</div>
 						</div>
-					</div>
-					<div class="col-md-6 col-xl-6 mb-4">
-						<div class="card shadow border-0">
-							<div class="card-body">
-								<div class="row align-items-center">
-									<div class="col-3 text-center">
-										<span class="circle circle-sm bg-primary">
-											<i class="fe fe-16 fe-activity text-white mb-0"></i>
-										</span>
-									</div>
-									<div class="col">
-										<p class="small text-muted mb-0">누적 사망자</p>
-										<span class="h3 mb-0">&nbsp;<fmt:formatNumber value="${dth}" pattern="#,###,###" /> 명</span>
+						<div class="col-xl-12 mb-4">
+							<div class="card shadow border-0">
+								<div class="card-body">
+									<div class="row align-items-center">
+										<div class="col-3 text-center">
+											<span class="circle circle-sm bg-primary">
+												<i class="fe fe-16 fe-activity text-white mb-0"></i>
+											</span>
+										</div>
+										<div class="col">
+											<p class="small text-muted mb-0">누적 사망자</p>
+											<span class="h3 mb-0">&nbsp;<fmt:formatNumber value="${dth}" pattern="#,###,###" /> 명</span>
+										</div>
 									</div>
 								</div>
 							</div>
 						</div>
 					</div>
-				</div>
-				<!-- end section -->
-				
-				<br>
-				
-				<!-- charts-->
-				<div class="row my-4">
-					<div class="col-md-12">
-						<div class="chart-box">
-							<div id="columnChart"></div>
-						</div>
-					</div>
-					<!-- .col -->
-				</div>
-				<!-- end section -->
-				<br>
-				<!-- info small box -->
-				<div class="row">
 					<div class="col-md-6">
 						<div class="card shadow mb-4">
 							<div class="card-body">
-								<h3 class="mb-1">전일대비 확진자 비교</h3>
-								<div class="chart-widget">
+								<h3 style="margin:10px;">전일대비 확진자 비교</h3><br>
+								<div class="chart-widget" style="margin:15px 0px;">
 									<div id="gradientRadial"></div>
-								</div>
+								</div><br>
 								<fmt:parseNumber var="adecPer" value="${adec1/adec2 * 100}" integerOnly="true" />
 								<fmt:formatNumber type="percent" value="${adec1/adec2}" pattern="0.0%" var="adecPerr"/>
 								<input type="hidden" id="adecPer" value="${adecPer}" />
@@ -130,11 +113,31 @@
 						<!-- .card -->
 					</div>
 					<!-- .col -->
-					
+				</div>
+				<!-- end section -->
+				
+				<br><br><hr>
+				
+				<!-- charts-->
+				<div class="row my-4">
+					<div class="col-md-12">
+						<h4 style="text-align:center; margin:30px 0px;">최근 10일 일별 코로나 확진 현황</h4>
+						<div class="chart-box" style="padding:0px 20px;">
+							<div id="columnChart"></div>
+						</div>
+					</div>
+					<!-- .col -->
+				</div>
+				<!-- end section -->
+				
+				<br>
+				
+				<!-- info small box -->
+				<%-- <div class="row">
 					<div class="col-md-6">
 						<div class="card shadow mb-4">
 							<div class="card-body">
-								<!-- <p class="mb-0"><strong class="mb-0 text-uppercase text-muted">Today</strong></p> -->
+								<p class="mb-0"><strong class="mb-0 text-uppercase text-muted">Today</strong></p>
 								<h3 class="mb-0">최근 10일 확진자 추이</h3>
 								<p class="text-muted">+18.9% Last week</p>
 								<div class="chart-box mt-n5">
@@ -166,14 +169,14 @@
 						<!-- .card -->
 					</div>
 					<!-- .col-md -->
-				</div>
+				</div> --%>
 				<!-- / .row -->
 				
-				<br><br><hr>
+				<hr>
 				<div class="row">
 					<!-- Recent orders -->
-					<div class="col-md-12"><br>
-						<h4 class="mb-3" style="text-align:center">최근 10일 코로나 확진 현황</h4>
+					<div class="col-md-12">
+						<h4 style="text-align:center; margin:30px 0px;">최근 코로나 누적 확진 현황</h4>
 						<table class="table table-borderless table-striped">
 							<thead>
 								<tr role="row">
@@ -313,7 +316,7 @@
             type: "bar",
             height: 350,
             stacked: !1,
-            columnWidth: "70%",
+            columnWidth: "90%",
             zoom: {
                 enabled: !1
             },
@@ -337,19 +340,30 @@
         plotOptions: {
             bar: {
                 horizontal: !1,
-                columnWidth: "10%",
+                columnWidth: "15%",
                 radius: 30,
                 enableShades: !1,
-                endingShape: "rounded"
+                endingShape: "rounded",
+                dataLabels: {
+					position: 'top', // top, center, bottom
+				},
             }
         },
+        dataLabels: {
+            enabled: true,
+            offsetY: -30,
+            style: {
+              fontSize: '12px',
+              colors: [colors.chartTheme]
+            }
+          },
         xaxis: {
             type: "datetime",
             categories: dateArea,
             labels: {
                 show: !0,
                 trim: !0,
-                offsetX: 40,
+                offsetX: 50,
                 minHeight: void 0,
                 maxHeight: 120,
                 style: {
@@ -358,7 +372,7 @@
                     fontFamily: base.defaultFontFamily
                 }
             },
-            axisBorder: { show: !1 }
+            axisBorder: { show: !0 }
         },
         yaxis: {
             labels: {

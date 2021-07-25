@@ -8051,7 +8051,7 @@ h1, h2, h3, h4, h5, h6, strong {
   color: #001a4e; }
 
 .text-muted {
-  color: #adb5bd !important; }
+  color: rgb(157, 157, 157) !important; }
 
 svg.navbar-brand-img {
   fill: #1b68ff; }
@@ -8115,7 +8115,7 @@ svg.navbar-brand-img {
 .table {
   color: #6c757d; }
   .table thead th {
-    color: #ced4da; }
+    color: rgb(191, 191, 191); }
   .table tbody tr th {
     color: #001a4e; }
   .table tr.collapse {

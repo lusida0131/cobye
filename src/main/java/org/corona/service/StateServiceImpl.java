@@ -168,7 +168,8 @@ public class StateServiceImpl implements StateService {
 	public void Crawler() {
 		// 대상 URL
 		//String URL = "https://m.news.naver.com/covid19/live.nhn";
-		String URL = "https://corona-live.com/";
+		//String URL = "https://corona-live.com/";
+		String URL = "https://corona-live.com/city/0/";
 		
 		try {
             // Connection 생성

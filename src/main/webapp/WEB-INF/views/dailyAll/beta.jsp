@@ -42,22 +42,23 @@
 					</div>
 				</div>
 				<!-- end section -->
-				<br>
+				
+				<%-- <br>
 				<!-- charts-->
 				<div class="row my-4">
 					<div class="col-md-12">
 						<div class="chart-box">
-							<!-- <div id="columnChart"></div> -->
+							<div id="columnChart"></div>
 						</div>
 					</div>
 					<!-- .col -->
-				</div>
+				</div>--%>
 				<!-- end section -->
 				
 				<br><hr>
 				<div class="row">
 					<div class="col-md-12"><br>
-						<h4 class="mb-3" style="text-align:center">실시간 코로나 확진 현황</h4>
+						<h4 style="text-align:center; margin:30px 0px;">실시간 코로나 확진 현황</h4>
 						<table class="table table-borderless table-striped">
 							<thead>
 								<tr role="row">
@@ -89,7 +90,7 @@
 <!-- main -->
 
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<%-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/apexcharts.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/tinycolor-min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/config.js"></script>
@@ -248,7 +249,7 @@
     },
     columnChartCtn = document.querySelector("#columnChart");
 	columnChartCtn && (columnChart = new ApexCharts(columnChartCtn, columnChartoptions)).render();
-</script>
+</script> --%>
 
 
 <%@ include file="../layout/footer.jsp"%>
