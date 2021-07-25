@@ -6,38 +6,38 @@
 
 
   <script src="${pageContext.request.contextPath}/resources/js/jquery.min.js"></script>
-  <script src="${pageContext.request.contextPath}/resources/js/popper.min.js"></script>
-  <script src="${pageContext.request.contextPath}/resources/js/moment.min.js"></script>
+  <%-- <script src="${pageContext.request.contextPath}/resources/js/popper.min.js"></script> --%>
+  <%-- <script src="${pageContext.request.contextPath}/resources/js/moment.min.js"></script> --%>
   <script src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>
-  <script src="${pageContext.request.contextPath}/resources/js/simplebar.min.js"></script>
-  <script src='${pageContext.request.contextPath}/resources/js/daterangepicker.js'></script>
+  <%-- <script src="${pageContext.request.contextPath}/resources/js/simplebar.min.js"></script> --%>
+  <%-- <script src='${pageContext.request.contextPath}/resources/js/daterangepicker.js'></script> --%>
   <script src='${pageContext.request.contextPath}/resources/js/jquery.stickOnScroll.js'></script>
   <script src="${pageContext.request.contextPath}/resources/js/tinycolor-min.js"></script>
   <script src="${pageContext.request.contextPath}/resources/js/config.js"></script>
-  <script src="${pageContext.request.contextPath}/resources/js/d3.min.js"></script>
-  <script src="${pageContext.request.contextPath}/resources/js/topojson.min.js"></script>
-  <script src="${pageContext.request.contextPath}/resources/js/datamaps.all.min.js"></script>
+  <%-- <script src="${pageContext.request.contextPath}/resources/js/d3.min.js"></script> --%>
+  <%-- <script src="${pageContext.request.contextPath}/resources/js/topojson.min.js"></script> --%>
+  <%-- <script src="${pageContext.request.contextPath}/resources/js/datamaps.all.min.js"></script>
   <script src="${pageContext.request.contextPath}/resources/js/datamaps-zoomto.js"></script>
-  <script src="${pageContext.request.contextPath}/resources/js/datamaps.custom.js"></script>
+  <script src="${pageContext.request.contextPath}/resources/js/datamaps.custom.js"></script> --%>
   <script src="${pageContext.request.contextPath}/resources/js/Chart.min.js"></script>
   <script>
     /* defind global options */
     Chart.defaults.global.defaultFontFamily = base.defaultFontFamily;
     Chart.defaults.global.defaultFontColor = colors.mutedColor;
   </script>
-  <script src="${pageContext.request.contextPath}/resources/js/gauge.min.js"></script>
-  <script src="${pageContext.request.contextPath}/resources/js/jquery.sparkline.min.js"></script>
+  <%-- <script src="${pageContext.request.contextPath}/resources/js/gauge.min.js"></script> --%>
+  <%-- <script src="${pageContext.request.contextPath}/resources/js/jquery.sparkline.min.js"></script> --%>
   <script src="${pageContext.request.contextPath}/resources/js/apexcharts.min.js"></script>
   <script src="${pageContext.request.contextPath}/resources/js/apexcharts.custom.js"></script>
-  <script src='${pageContext.request.contextPath}/resources/js/jquery.mask.min.js'></script>
-  <script src='${pageContext.request.contextPath}/resources/js/select2.min.js'></script>
-  <script src='${pageContext.request.contextPath}/resources/js/jquery.steps.min.js'></script>
-  <script src='${pageContext.request.contextPath}/resources/js/jquery.validate.min.js'></script>
-  <script src='${pageContext.request.contextPath}/resources/js/jquery.timepicker.js'></script>
-  <script src='${pageContext.request.contextPath}/resources/js/dropzone.min.js'></script>
-  <script src='${pageContext.request.contextPath}/resources/js/uppy.min.js'></script>
-  <script src='${pageContext.request.contextPath}/resources/js/quill.min.js'></script>
-  <script>
+  <%-- <script src='${pageContext.request.contextPath}/resources/js/jquery.mask.min.js'></script> --%>
+  <%-- <script src='${pageContext.request.contextPath}/resources/js/select2.min.js'></script> --%>
+  <%-- <script src='${pageContext.request.contextPath}/resources/js/jquery.steps.min.js'></script> --%>
+  <%-- <script src='${pageContext.request.contextPath}/resources/js/jquery.validate.min.js'></script> --%>
+  <%-- <script src='${pageContext.request.contextPath}/resources/js/jquery.timepicker.js'></script> --%>
+  <%-- <script src='${pageContext.request.contextPath}/resources/js/dropzone.min.js'></script> --%>
+  <%-- <script src='${pageContext.request.contextPath}/resources/js/uppy.min.js'></script> --%>
+  <%-- <script src='${pageContext.request.contextPath}/resources/js/quill.min.js'></script> --%>
+  <!-- <script>
     $('.select2').select2(
       {
         theme: 'bootstrap4',
@@ -208,8 +208,8 @@
         });
       }, false);
     })();
-  </script>
-  <script>
+  </script> -->
+  <!-- <script>
     var uptarg = document.getElementById('drag-drop-area');
     if (uptarg) {
       var uppy = Uppy.Core().use(Uppy.Dashboard,
@@ -229,7 +229,7 @@
         console.log('Upload complete! We’ve uploaded these files:', result.successful)
       });
     }
-  </script>
+  </script> -->
   <script src="${pageContext.request.contextPath}/resources/js/apps.js"></script>
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-56159088-1"></script>

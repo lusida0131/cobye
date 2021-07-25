@@ -3,22 +3,28 @@ package org.corona.service;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import org.corona.domain.DisasterVO;
 import org.corona.domain.StateVO;
 
 public interface StateService {
 	
 	// today date get
 	public String today();
-	
 	// date - 10
 	public String day(String sDay);
 	
-	// api
+	// corona 현황 api 요청
 	public String getCovidStateApi(String sDay, String eDay) throws IOException;
-	
-	// api
+	// corona 현황 api 응답 데이터
 	public ArrayList<StateVO> covidState(String result);
-	
 	public ArrayList<StateVO> aCovidState(ArrayList<StateVO> list);
+	
+	// Jsoup html parse
+	public void Crawler();
+	
+	// 재난문자 현황 api 요청
+	public String getDisasterMsgApi() throws IOException;
+	// 재난문자 현황 api 응답 데이터
+	public ArrayList<DisasterVO> DisasterMsg(String result);
 	
 }

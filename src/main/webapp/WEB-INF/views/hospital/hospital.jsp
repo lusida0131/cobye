@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+
 <%@ include file="../layout/header.jsp"%>
 <style>
     .wrap {position: absolute;left: 0;bottom: 40px;width: 288px;height: 132px;margin-left: -144px;text-align: left;overflow: hidden;font-size: 12px;font-family: 'Malgun Gothic', dotum, '돋움', sans-serif;line-height: 1.5;}
@@ -9,10 +10,10 @@
     .info .close {position: absolute;top: 10px;right: 10px;color: #888;width: 17px;height: 17px;background: url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/overlay_close.png');}
     .info .close:hover {cursor: pointer;}
     .info .body {position: relative;overflow: hidden;}
-    .info .desc {position: relative;margin: 13px 0 0 13px;height: 65px;}
+    .info .desc {position: relative;margin: 0 5px 0 5px;height: 100px;}
     .desc .ellipsis {overflow: hidden;text-overflow: ellipsis;white-space: nowrap;;text-align: left;}
     .desc .jibun {font-size: 11px;color: #888;margin-top: -2px;}
-    
+    .link {tdisplay:inline-block;text-align:right;margin-left: 220px;}
     .info:after {content: '';position: absolute;margin-left: -12px;left: 50%;bottom: 0;width: 22px;height: 12px;background: url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/vertex_white.png')}
     .info .link {color: #5085BB;}
 </style>
@@ -21,7 +22,7 @@
  <script type="text/javascript"
       src="//dapi.kakao.com/v2/maps/sdk.js?appkey=922ca951b44c6af51770da3a41e90f60&libraries=services,clusterer"></script>
 
-<script>	
+<script>
 	if (navigator.geolocation) {
 	    // GeoLocation을 이용해서 접속 위치를 얻어옵니다
 	    navigator.geolocation.getCurrentPosition(function(position) { 
@@ -132,13 +133,41 @@
 					addressContent.className = "ellipsis";
 					addressContent.appendChild(document.createTextNode($(data.positions)[i].주소));
 					descContent.appendChild(addressContent);
-
+					
+					var daytimeContent = document.createElement("div");
+					daytimeContent.className = "ellipsis1";
+					daytimeContent.appendChild(document.createTextNode("평일 운영 시간 : "));
+					addressContent.appendChild(daytimeContent);
+				  	
+					
+					var daytime1Content = document.createTextNode($(data.positions)[i].평일운영시간);
+					daytime1Content.className = "ellipsis2";
+					daytimeContent.appendChild(daytime1Content);
+					
+					var weekendContent = document.createElement("div");
+					weekendContent.className = "ellipsis3";
+					weekendContent.appendChild(document.createTextNode("토요일 운영 시간 : "));
+					daytimeContent.appendChild(weekendContent);
+					
+					var weekend1Content = document.createTextNode($(data.positions)[i].토요일운영시간);
+					weekend1Content.className = "ellipsis4";
+					weekendContent.appendChild(weekend1Content);
+					
+					var holidayContent = document.createElement("div");
+					holidayContent.className = "ellipsis5";
+					holidayContent.appendChild(document.createTextNode("일요일 운영 시간 : "));
+					weekendContent.appendChild(holidayContent);
+					
+					var holiday1Content = document.createTextNode($(data.positions)[i].일요일공휴일);
+					holiday1Content.className = "ellipsis6";
+					holidayContent.appendChild(holiday1Content);
+					
+					
 					var LinkDiv = document.createElement("div");
 					descContent.appendChild(LinkDiv);
-
+					
 					//커스텀오버레이 링크
 					var LinkContent = document.createElement("a");
-					
 					url = "https://map.kakao.com/link/to/"+ $(data.positions)[i].의료기관명  + "," + result[0].y + "," + result[0].x;
 					
 					LinkContent.setAttribute("href", url);
@@ -152,18 +181,6 @@
 
 					overlay.setContent(Customcontent);
 					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-
 					var testOverlay = null;
 					// 마커를 클릭했을 때 커스텀 오버레이를 표시합니다
 					daum.maps.event.addListener(marker, 'click', function() {

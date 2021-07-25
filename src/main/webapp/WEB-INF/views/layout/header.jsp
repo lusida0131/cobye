@@ -13,19 +13,19 @@
     <link rel="icon" href="favicon.ico">
     <title>COBYE</title>
     <!-- Simple bar CSS -->
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/simplebar.css">
+    <%-- <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/simplebar.css"> --%>
     <!-- Fonts CSS -->
     <link href="https://fonts.googleapis.com/css2?family=Overpass:ital,wght@0,100;0,200;0,300;0,400;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
     <!-- Icons CSS -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/feather.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/select2.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/dropzone.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/uppy.min.css">
+    <%-- <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/select2.css"> --%>
+    <%-- <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/dropzone.css"> --%>
+    <%-- <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/uppy.min.css"> --%>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/jquery.steps.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/jquery.timepicker.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/quill.snow.css">
+    <%-- <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/jquery.timepicker.css"> --%>
+    <%-- <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/quill.snow.css"> --%>
     <!-- Date Range Picker CSS -->
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/daterangepicker.css">
+    <%-- <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/daterangepicker.css"> --%>
     <!-- App CSS -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/app-light.css" id="lightTheme">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/app-dark.css" id="darkTheme" disabled>
@@ -86,6 +86,11 @@
               <a class="nav-link" href="/page/index">
                 <i class="fe fe-map fe-16"></i>
                 <span class="ml-3 item-text">예방접종 의료기관</span>
+              </a>
+            </li><li class="nav-item w-100">
+              <a class="nav-link" href="/beta">
+                <i class="fe fe-activity fe-16"></i>
+                <span class="ml-3 item-text">(BETA) 실시간 확진자</span>
               </a>
             </li>
           </ul>

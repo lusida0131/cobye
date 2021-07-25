@@ -4,6 +4,7 @@ package org.corona.controller;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import org.corona.domain.DisasterVO;
 import org.corona.domain.StateVO;
 import org.corona.service.StateService;
 import org.slf4j.Logger;
@@ -36,21 +37,32 @@ public class StateController {
 		String eDay = service.today();	// 기준일 (=종료일)
 		String sDay = service.day(eDay);	// 기준일-10일 (=시작일)
 		
-		String result = service.getCovidStateApi(sDay, eDay);
-		//log.info("getCovidStateApi result: " + result);
-		ArrayList<StateVO> slist = service.covidState(result);
-		System.out.println("covidState slist: " + slist);
+		ArrayList<StateVO> slist = service.covidState(service.getCovidStateApi(sDay, eDay));
 		ArrayList<StateVO> alist = service.aCovidState(slist);
 		System.out.println("aCovidState alist: " + alist);
 		
+		int dec = alist.get(0).getDecideCnt();
+		int dth = alist.get(0).getDeathCnt();
 		int adec1 = alist.get(0).getADecideCnt();
 		int adec2 = alist.get(1).getADecideCnt();
 		
+		model.addAttribute("dec", dec);
+		model.addAttribute("dth", dth);
 		model.addAttribute("adec1", adec1);
 		model.addAttribute("adec2", adec2);
 		model.addAttribute("alist", alist);
 		
 		return "/dailyAll/dashboard";
+	}
+	
+	@GetMapping("/beta")
+	public String beta(Model model) throws IOException {
+		//service.Crawler();
+		ArrayList<DisasterVO> dlist = service.DisasterMsg(service.getDisasterMsgApi());
+		//System.out.println("DisasterMsg dlist: " + dlist);
+		model.addAttribute("dlist", dlist);
+				
+		return "/dailyAll/beta";
 	}
 	
 	@GetMapping("/testChart")
