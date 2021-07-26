@@ -43,6 +43,11 @@ public class StateController {
 		ArrayList<StateVO> alist = service.aCovidState(slist);
 		System.out.println("aCovidState alist: " + alist);
 		
+		int adec1 = alist.get(0).getADecideCnt();
+		int adec2 = alist.get(1).getADecideCnt();
+		
+		model.addAttribute("adec1", adec1);
+		model.addAttribute("adec2", adec2);
 		model.addAttribute("alist", alist);
 		
 		return "/dailyAll/dashboard";

@@ -40,4 +40,30 @@ public class HomeController {
 		return "/hospital/hospital";
 	}
 	
+	
+	
+	
+	@GetMapping("/page/chart")
+	public String chart() {
+		return "/page/chart";
+	}
+	
+	
+	@GetMapping("/page/chart2")
+	public String chart2() {
+		return "/page/chart2";
+	}
+	
+	@GetMapping("/page/chart3")
+	public String chart3() {
+		return "/page/chart3";
+	}
+	@GetMapping("/page/chart4")
+	public String chart4() {
+		return "/page/chart4";
+	}
+	@GetMapping("/page/chart5")
+	public String chart5() {
+		return "/page/chart5";
+	}
 }

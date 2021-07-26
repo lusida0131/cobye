@@ -101,7 +101,7 @@ public class VaccineServiceImpl implements VaccineService{
 //                 svo.setLunchSttTm(iobj.getString("lunchSttTm"));
 //                 svo.setLunchEndTm(String.valueOf(iobj.getInt("lunchEndTm")));
                  list.add(svo);
-			        System.out.println("lossssssssssssssssssssssssss" + svo);
+			        
 		    } 
 			    
 			    return list;

@@ -128,19 +128,21 @@
 					<div class="col-md-6">
 						<div class="card shadow mb-4">
 							<div class="card-body">
+								<h3 class="mb-1">전일대비 확진자 비교</h3>
 								<div class="chart-widget">
 									<div id="gradientRadial"></div>
 								</div>
+								<fmt:parseNumber var="adecPer" value="${adec1/adec2 * 100}" integerOnly="true" />
+								<fmt:formatNumber type="percent" value="${adec1/adec2}" pattern="0.0%" var="adecPerr"/>
+								<input type="hidden" id="adecPer" value="${adecPer}" />
 								<div class="row">
 									<div class="col-6 text-center">
-										<p class="text-muted mb-0">Yesterday</p>
-										<h4 class="mb-1">126</h4>
-										<p class="text-muted mb-2">+5.5%</p>
+										<p class="text-muted mb-0">어제</p>
+										<h4 class="mb-1">${adec2}</h4>
 									</div>
 									<div class="col-6 text-center">
-										<p class="text-muted mb-0">Today</p>
-										<h4 class="mb-1">86</h4>
-										<p class="text-muted mb-2">-5.5%</p>
+										<p class="text-muted mb-0">오늘</p>
+										<h4 class="mb-1">${adec1}</h4>
 									</div>
 								</div>
 							</div>
@@ -153,10 +155,8 @@
 					<div class="col-md-6">
 						<div class="card shadow mb-4">
 							<div class="card-body">
-								<p class="mb-0">
-									<strong class="mb-0 text-uppercase text-muted">Today</strong>
-								</p>
-								<h3 class="mb-0">$2,562.30</h3>
+								<!-- <p class="mb-0"><strong class="mb-0 text-uppercase text-muted">Today</strong></p> -->
+								<h3 class="mb-0">최근 10일 확진자 추이</h3>
 								<p class="text-muted">+18.9% Last week</p>
 								<div class="chart-box mt-n5">
 									<div id="lineChartWidget"></div>
@@ -190,7 +190,7 @@
 				</div>
 				<!-- / .row -->
 				
-				
+				<br><br>
 				<div class="row">
 					<!-- Recent orders -->
 					<div class="col-md-12">
@@ -209,14 +209,15 @@
 							</thead>
 							<tbody>
 								<c:forEach var="list" items="${alist}">
+								<fmt:parseDate value="${list.stateDt}" var="stateDt" pattern="yyyyMMdd" />
 								<tr>
-									<th scope="col">${list.stateDt}</th>
-									<td>${list.decideCnt}</td>
-									<td>+ ${list.ADecideCnt}</td>
-									<td>${list.careCnt}</td>
-									<td>+ ${list.ACareCnt}</td>
-									<td>${list.deathCnt}</td>
-									<td>+ ${list.ADeathCnt}</td>
+									<th scope="col"><fmt:formatDate value="${stateDt}" pattern="MM월 dd일" /></th>
+									<td><fmt:formatNumber value="${list.decideCnt}" pattern="#,###,###" /></td>
+									<td>+ <fmt:formatNumber value="${list.ADecideCnt}" pattern="#,###,###" /></td>
+									<td><fmt:formatNumber value="${list.careCnt}" pattern="#,###,###" /></td>
+									<td>+ <fmt:formatNumber value="${list.ACareCnt}" pattern="#,###,###" /></td>
+									<td><fmt:formatNumber value="${list.deathCnt}" pattern="#,###,###" /></td>
+									<td>+ <fmt:formatNumber value="${list.ADeathCnt}" pattern="#,###,###" /></td>
 								</tr>
 								</c:forEach>
 							</tbody>
@@ -359,6 +360,252 @@
 	</div>
 </main>
 <!-- main -->
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/apexcharts.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/tinycolor-min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/config.js"></script>
+
+<script>
+	var adecPer = $('#adecPer').val();
+	console.log("adecPer: "+adecPer);
+	var gradientRadialChart;
+	var gradientRadialOptions = { 
+	    series: [adecPer], 
+	    chart: { 
+	        height: 200, 
+	        type: "radialBar", 
+	        toolbar: { show: !1 } 
+	    }, 
+	    plotOptions: { 
+	        radialBar: { 
+	            startAngle: -135, 
+	            endAngle: 225, 
+	            hollow: { 
+	                margin: 0, 
+	                size: "70%", 
+	                background: colors.backgroundColor, 
+	                image: void 0, 
+	                imageOffsetX: 0, 
+	                imageOffsetY: 0, 
+	                position: "front" 
+	            }, 
+	            track: { 
+	                background: colors.backgroundColor, 
+	                strokeWidth: "67%", 
+	                margin: 0 
+	            }, 
+	            dataLabels: { 
+	                show: !0, 
+	                name: { 
+	                    fontSize: "0.875rem", 
+	                    fontWeight: 400, 
+	                    offsetY: -10, 
+	                    show: !0, 
+	                    color: colors.mutedColor, 
+	                    fontFamily: base.defaultFontFamily 
+	                }, 
+	                value: { 
+	                    formatter: function (e) { return parseInt(e) }, 
+	                    color: colors.headingColor, 
+	                    fontSize: "1.53125rem", 
+	                    fontWeight: 700, 
+	                    fontFamily: base.defaultFontFamily, 
+	                    offsetY: 5, 
+	                    show: !0 
+	                }, 
+	                total: { 
+	                    show: !0, 
+	                    fontSize: "0.875rem", 
+	                    fontWeight: 400, 
+	                    offsetY: -10, 
+	                    color: colors.mutedColor, 
+	                    fontFamily: base.defaultFontFamily 
+	                } 
+	            } 
+	        } 
+	    }, 
+	    fill: { 
+	        type: "gradient", 
+	        gradient: { 
+	            shade: "dark", 
+	            type: "horizontal", 
+	            shadeIntensity: .5, 
+	            gradientToColors: ["#ABE5A1"], 
+	            inverseColors: !0, 
+	            opacityFrom: 1, 
+	            opacityTo: 1, 
+	            stops: [0, 100] 
+	        } 
+	    }, 
+	    stroke: { lineCap: "round" }, 
+	    labels: ["Percent"] 
+	};
+	var gradientRadial = document.querySelector("#gradientRadial"); 
+	gradientRadial && (gradientRadialChart = new ApexCharts(gradientRadial, gradientRadialOptions)).render(); 
+</script>
+
+<script>
+	var D = [], D1 = [], D2 = [];
+	<c:forEach var="dlist" items="${alist}">
+		var aa = ('${dlist.stateDt}'*1+1) + "";
+		var a = aa.substr(4,2) + "/" + aa.substr(6,2) + "/" +  aa.substr(0,4);
+	    var a1 = '${dlist.ADecideCnt}';
+	    var a2 = '${dlist.ACareCnt}';
+	    /* console.log('a: '+a+'   a1: '+a1+'   a2: '+a2); */
+	    D.push(a);
+	    D1.push(a1);
+	    D2.push(a2);
+	</c:forEach>
+	var columnChart, columnChartoptions = {
+        series: [{
+            name: "일일 확진자",
+            data: D1
+        }, {
+            name: "일일 치료환자",
+            data: D2
+        }],
+        chart: {
+            type: "bar",
+            height: 350,
+            stacked: !1,
+            columnWidth: "70%",
+            zoom: {
+                enabled: !0
+            },
+            toolbar: {
+                show: !1
+            },
+            background: "transparent"
+        },
+        dataLabels: {
+            enabled: !1
+        },
+        theme: {
+            mode: colors.chartTheme
+        },
+        responsive: [{
+            breakpoint: 480,
+            options: {
+                legend: {
+                    position: "bottom",
+                    offsetX: -10,
+                    offsetY: 0
+                }
+            }
+        }],
+        plotOptions: {
+            bar: {
+                horizontal: !1,
+                columnWidth: "40%",
+                radius: 30,
+                enableShades: !1,
+                endingShape: "rounded"
+            }
+        },
+        xaxis: {
+            type: "datetime",
+            categories: D,
+            labels: {
+                show: !0,
+                trim: !0,
+                offsetX: 40,
+                minHeight: void 0,
+                maxHeight: 120,
+                style: {
+                    colors: colors.mutedColor,
+                    cssClass: "text-muted",
+                    fontFamily: base.defaultFontFamily
+                }
+            },
+            axisBorder: {
+                show: !1
+            }
+        },
+        yaxis: {
+            labels: {
+                show: !0,
+                trim: !1,
+                offsetX: -10,
+                minHeight: void 0,
+                maxHeight: 120,
+                style: {
+                    colors: colors.mutedColor,
+                    cssClass: "text-muted",
+                    fontFamily: base.defaultFontFamily
+                }
+            }
+        },
+        legend: {
+            position: "top",
+            fontFamily: base.defaultFontFamily,
+            fontWeight: 400,
+            labels: {
+                colors: colors.mutedColor,
+                useSeriesColors: !1
+            },
+            markers: {
+                width: 10,
+                height: 10,
+                strokeWidth: 0,
+                strokeColor: "#fff",
+                fillColors: [extend.primaryColor, extend.primaryColorLighter],
+                radius: 6,
+                customHTML: void 0,
+                onClick: void 0,
+                offsetX: 0,
+                offsetY: 0
+            },
+            itemMargin: {
+                horizontal: 10,
+                vertical: 0
+            },
+            onItemClick: {
+                toggleDataSeries: !0
+            },
+            onItemHover: {
+                highlightDataSeries: !0
+            }
+        },
+        fill: {
+            opacity: 1,
+            colors: [base.primaryColor, extend.primaryColorLighter]
+        },
+        grid: {
+            show: !0,
+            borderColor: colors.borderColor,
+            strokeDashArray: 0,
+            position: "back",
+            xaxis: {
+                lines: {
+                    show: !1
+                }
+            },
+            yaxis: {
+                lines: {
+                    show: !0
+                }
+            },
+            row: {
+                colors: void 0,
+                opacity: .5
+            },
+            column: {
+                colors: void 0,
+                opacity: .5
+            },
+            padding: {
+                top: 0,
+                right: 0,
+                bottom: 0,
+                left: 0
+            }
+        }
+    },
+    columnChartCtn = document.querySelector("#columnChart");
+	columnChartCtn && (columnChart = new ApexCharts(columnChartCtn, columnChartoptions)).render();
+</script>
 
 
 <%@ include file="../layout/footer.jsp"%>

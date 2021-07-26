@@ -29,8 +29,17 @@ public class StateServiceImpl implements StateService {
 	public String today() {
 		
 		SimpleDateFormat fmt = new SimpleDateFormat("yyyyMMdd");
-		Date date = new Date();
-		String today = fmt.format(date);
+		SimpleDateFormat fmtTime = new SimpleDateFormat("HHmm");
+		Calendar date = Calendar.getInstance();
+		String today = fmt.format(date.getTime());
+		int time = Integer.parseInt(fmtTime.format(date.getTime()));
+//		System.out.println("int parse time: "+time);
+		
+		if (time < 1000) {
+			date.setTime(new Date());
+			date.add(Calendar.DATE, -1);
+			today = fmt.format(date.getTime());
+		}
 		
 		return today;
 	}

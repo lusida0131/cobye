@@ -16,6 +16,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @AllArgsConstructor
@@ -41,13 +42,15 @@ public class VaccionController {
 	}
 	
 	@GetMapping("/vaccine/vacmap")
-	public String vacmap(HttpServletRequest request, Model model) throws IOException{
-		/*
-		 * String start = request.getParameter("from_place"); log.info(start);
-		 * 
-		 * ArrayList<vaccionVO> vlist = service.vaccionApi(start);
-		 * model.addAttribute("vlist", vlist);
-		 */
+	public String vacmap(HttpServletRequest request, Model model, RedirectAttributes attr) throws IOException{
+		
+		 
+		String orgZipaddr = request.getParameter("orgZipaddr");
+		
+		
+		attr.addFlashAttribute("orgZipaddr", orgZipaddr);
+		
+		System.out.println("dddddddddddddddddd" + orgZipaddr);
 		return "/vaccine/vacmap";
 	}
 }

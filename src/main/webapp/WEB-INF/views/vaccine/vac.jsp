@@ -27,7 +27,7 @@
 								<option value="전라남도">전라남도</option>
 								<option value="경상남도">경상남도</option>
 								<option value="광주광역시">광주광역시</option>
-								<option value="제주도">제주도</option>
+								<option value="제주">제주도</option>
 							</select>
 					 <input type="button"	id="input_submit" onclick="input()" value="조회">
 				

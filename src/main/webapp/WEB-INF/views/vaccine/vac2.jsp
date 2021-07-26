@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ include file="../layout/header.jsp"%>
 
-
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
@@ -22,7 +22,7 @@
 			<div class="panel-group" id="accordion" role="tablist"
 				aria-multiselectable="true">
 				<c:forEach var="list" items="${vlist}">
-
+		<form id="flightFrm1" name="flightFrm1" action="/vaccine/vacmap" method="get">
 				<c:set var="count" value="0" />
 					<div class="panel-heading" role="tab" id="heading${count}">
 						<h4 class="panel-title">
@@ -56,16 +56,19 @@
 									<td>${list.orgcd}</td>
 									<td>${list.orgnm}</td>
 									<td>${list.orgTlno}</td>
-									<td>${list.orgZipaddr}</td>
+									<td id="ddd">${list.orgZipaddr}</td>
+								<td><input type="hidden"  name="orgZipaddr" id="orgZipaddr" value="${list.orgZipaddr}"></td>
+									 <td><input type="button"	id="input_submit" onclick="input()" value="조회"></td>
 								</tr>
 								<tr>
-								<%-- <td><a href="${pageContext.request.contextPath}/vaccine/vacmap?map=${list.orgZipaddr}">길찾기</a></td> --%>
- 								  <td id="div"><a href="${pageContext.request.contextPath}/vaccine/vacmap" id="planplace" name="planplace" value="${list.orgZipaddr}" readonly="readonly">길찾기</a></td>
-								</tr>
+									
+						 			<td><button name="ssbtn" style="float: right; margin: 8px 10px 15px 10px;">찜 </button>
+								 <td><a href="${pageContext.request.contextPath}/vaccine/vacmap?${list.orgZipaddr}">길찾기</a></td> 	</tr>
+								 	
 							</tbody>
 						</table>
 					</div>
-
+</form>
 				</c:forEach>
 
 			</div>
@@ -74,7 +77,16 @@
 </div>
 <br>
 
+<script type="text/javascript">
+	
+function input() {
+	var dday = document.getElementById('orgZipaddr');
 
+	console.log(dday);
+	$('#flightFrm1').submit();
+}
+		
+	</script>
 
 
 
