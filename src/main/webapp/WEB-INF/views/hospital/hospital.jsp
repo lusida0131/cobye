@@ -63,7 +63,7 @@
 	        image : markerImage
 	        
 	    }); 
-	    
+	    // 주석
 	    var iwContent = message,
 	        iwRemoveable = true;
 
