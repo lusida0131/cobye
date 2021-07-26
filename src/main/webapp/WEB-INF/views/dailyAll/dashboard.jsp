@@ -94,12 +94,14 @@
 					<div class="col-md-6">
 						<div class="card shadow mb-4">
 							<div class="card-body">
-								<h3 style="margin:10px;">전일대비 확진자 비교</h3><br>
+								<h3 style="margin:10px 10px 0px 20px;">전일대비 확진자 비교</h3><br>
+								<fmt:parseDate value="${alist[0].stateDt}" var="date0" pattern="yyyyMMdd" />
+								<fmt:parseDate value="${alist[1].stateDt}" var="date1" pattern="yyyyMMdd" />
+								<p style="text-align:right; margin-right:20px; margin-bottom:10px;">
+									<fmt:formatDate value="${date0}" pattern="MM월 dd일" /> 기준</p>
 								<div class="chart-widget" style="margin:10px 0px;">
 									<div id="gradientRadial"></div>
 								</div><br>
-								<fmt:parseDate value="${alist[0].stateDt}" var="date0" pattern="yyyyMMdd" />
-								<fmt:parseDate value="${alist[1].stateDt}" var="date1" pattern="yyyyMMdd" />
 								<fmt:parseNumber var="adecPer" value="${alist[0].ADecideCnt/alist[1].ADecideCnt * 100}" integerOnly="true" />
 								<%-- <fmt:formatNumber type="percent" value="${alist[0].ADecideCnt/alist[1].ADecideCnt}" pattern="0.0%" var="adecPerr"/> --%>
 								<input type="hidden" id="adecPer" value="${adecPer}" />
