@@ -26,8 +26,6 @@ import lombok.extern.log4j.Log4j;
 @Log4j
 public class StateController {
 	
-	private static final Logger logger = LoggerFactory.getLogger(StateController.class);
-	
 	private StateService service;
 	
 	
