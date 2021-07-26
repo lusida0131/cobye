@@ -120,7 +120,7 @@
 					var info = document.createElement('div');
 					info.className = "info"			
 					Customcontent.appendChild(info);
-
+					//커스텀 오버레이
 					//커스텀오버레이 타이틀
 					var contentTitle = document.createElement("div");
 					contentTitle.className = "title"
