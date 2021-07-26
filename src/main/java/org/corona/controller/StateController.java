@@ -39,17 +39,7 @@ public class StateController {
 		
 		ArrayList<StateVO> slist = service.covidState(service.getCovidStateApi(sDay, eDay));
 		ArrayList<StateVO> alist = service.aCovidState(slist);
-		System.out.println("aCovidState alist: " + alist);
-		
-		int dec = alist.get(0).getDecideCnt();
-		int dth = alist.get(0).getDeathCnt();
-		int adec1 = alist.get(0).getADecideCnt();
-		int adec2 = alist.get(1).getADecideCnt();
-		
-		model.addAttribute("dec", dec);
-		model.addAttribute("dth", dth);
-		model.addAttribute("adec1", adec1);
-		model.addAttribute("adec2", adec2);
+		//System.out.println("aCovidState alist: " + alist);
 		model.addAttribute("alist", alist);
 		
 		return "/dailyAll/dashboard";
@@ -60,14 +50,12 @@ public class StateController {
 		//service.Crawler();
 		ArrayList<DisasterVO> dlist = service.DisasterMsg(service.getDisasterMsgApi());
 		//System.out.println("DisasterMsg dlist: " + dlist);
+		if(dlist.size()==0) {
+			model.addAttribute("n", "n");
+		}
 		model.addAttribute("dlist", dlist);
 				
 		return "/dailyAll/beta";
-	}
-	
-	@GetMapping("/testChart")
-	public String gChart() {
-		return "/dailyAll/testChart";
 	}
 	
 }

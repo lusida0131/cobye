@@ -41,7 +41,7 @@
 										</div>
 										<div class="col pr-0">
 											<p class="small text-muted mb-0">어제 확진자</p>
-											<span class="h3 mb-0">&nbsp;<fmt:formatNumber value="${adec1}" pattern="#,###,###" /> 명</span>
+											<span class="h3 mb-0">&nbsp;<fmt:formatNumber value="${alist[0].ADecideCnt}" pattern="#,###,###" /> 명</span>
 											<!-- <span class="small text-success">+16.5%</span> -->
 										</div>
 									</div>
@@ -61,7 +61,7 @@
 											<p class="small text-muted mb-0">누적 확진자</p>
 											<div class="row align-items-center no-gutters">
 												<div class="col-auto">
-													<span class="h3 mr-2 mb-0">&nbsp;<fmt:formatNumber value="${dec}" pattern="#,###,###" /> 명</span>
+													<span class="h3 mr-2 mb-0">&nbsp;<fmt:formatNumber value="${alist[0].decideCnt}" pattern="#,###,###" /> 명</span>
 												</div>
 											</div>
 										</div>
@@ -80,7 +80,7 @@
 										</div>
 										<div class="col">
 											<p class="small text-muted mb-0">누적 사망자</p>
-											<span class="h3 mb-0">&nbsp;<fmt:formatNumber value="${dth}" pattern="#,###,###" /> 명</span>
+											<span class="h3 mb-0">&nbsp;<fmt:formatNumber value="${alist[0].deathCnt}" pattern="#,###,###" /> 명</span>
 										</div>
 									</div>
 								</div>
@@ -91,20 +91,24 @@
 						<div class="card shadow mb-4">
 							<div class="card-body">
 								<h3 style="margin:10px;">전일대비 확진자 비교</h3><br>
-								<div class="chart-widget" style="margin:15px 0px;">
+								<div class="chart-widget" style="margin:10px 0px;">
 									<div id="gradientRadial"></div>
 								</div><br>
-								<fmt:parseNumber var="adecPer" value="${adec1/adec2 * 100}" integerOnly="true" />
-								<fmt:formatNumber type="percent" value="${adec1/adec2}" pattern="0.0%" var="adecPerr"/>
+								<fmt:parseDate value="${alist[0].stateDt}" var="date0" pattern="yyyyMMdd" />
+								<fmt:parseDate value="${alist[1].stateDt}" var="date1" pattern="yyyyMMdd" />
+								<fmt:parseNumber var="adecPer" value="${alist[0].ADecideCnt/alist[1].ADecideCnt * 100}" integerOnly="true" />
+								<fmt:formatNumber type="percent" value="${alist[0].ADecideCnt/alist[1].ADecideCnt}" pattern="0.0%" var="adecPerr"/>
 								<input type="hidden" id="adecPer" value="${adecPer}" />
 								<div class="row">
 									<div class="col-6 text-center">
 										<p class="text-muted mb-0">어제</p>
-										<h4 class="mb-1"><fmt:formatNumber value="${adec2}" pattern="#,###,###" /> 명</h4>
+										<p class="text-muted mb-0"><fmt:formatDate value="${date1}" pattern="MM월 dd일" /></p>
+										<h4 class="mb-1"><fmt:formatNumber value="${alist[1].ADecideCnt}" pattern="#,###,###" /> 명</h4>
 									</div>
 									<div class="col-6 text-center">
 										<p class="text-muted mb-0">오늘</p>
-										<h4 class="mb-1"><fmt:formatNumber value="${adec1}" pattern="#,###,###" /> 명</h4>
+										<p class="text-muted mb-0"><fmt:formatDate value="${date0}" pattern="MM월 dd일" /></p>
+										<h4 class="mb-1"><fmt:formatNumber value="${alist[0].ADecideCnt}" pattern="#,###,###" /> 명</h4>
 									</div>
 								</div>
 							</div>
@@ -363,7 +367,7 @@
             labels: {
                 show: !0,
                 trim: !0,
-                offsetX: 50,
+                offsetX: 30,
                 minHeight: void 0,
                 maxHeight: 120,
                 style: {
