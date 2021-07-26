@@ -59,6 +59,11 @@
 				<div class="row">
 					<div class="col-md-12"><br>
 						<h4 style="text-align:center; margin:30px 0px;">실시간 코로나 확진 현황</h4>
+						<c:choose>
+						<c:when test="${n ne null}">
+							<h6 style="text-align:center; margin:40px 0px;">금일 집계된 데이터는 없습니다.</h6>
+						</c:when>
+						<c:when test="${dlist ne null}">
 						<table class="table table-borderless table-striped">
 							<thead>
 								<tr role="row">
@@ -78,6 +83,7 @@
 								</c:forEach>
 							</tbody>
 						</table>
+						</c:when></c:choose>
 					</div>
 				</div>
 				<!-- end section -->
