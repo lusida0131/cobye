@@ -17,6 +17,7 @@ public interface StateService {
 	public String getCovidStateApi(String sDay, String eDay) throws IOException;
 	// corona 현황 api 응답 데이터
 	public ArrayList<StateVO> covidState(String result);
+	// 일자별 변화량 추가
 	public ArrayList<StateVO> aCovidState(ArrayList<StateVO> list);
 	
 	// Jsoup html parse
@@ -26,5 +27,7 @@ public interface StateService {
 	public String getDisasterMsgApi() throws IOException;
 	// 재난문자 현황 api 응답 데이터
 	public ArrayList<DisasterVO> DisasterMsg(String result);
+	// 확진자 카운트
+	public int msgCount(ArrayList<DisasterVO> list);
 	
 }

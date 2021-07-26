@@ -34,10 +34,9 @@ public class StateController {
 
 		String eDay = service.today();	// 기준일 (=종료일)
 		String sDay = service.day(eDay);	// 기준일-10일 (=시작일)
-		
 		ArrayList<StateVO> slist = service.covidState(service.getCovidStateApi(sDay, eDay));
 		ArrayList<StateVO> alist = service.aCovidState(slist);
-		//System.out.println("aCovidState alist: " + alist);
+		log.info("aCovidState alist: " + alist);
 		model.addAttribute("alist", alist);
 		
 		return "/dailyAll/dashboard";
@@ -45,13 +44,20 @@ public class StateController {
 	
 	@GetMapping("/beta")
 	public String beta(Model model) throws IOException {
+		ArrayList<StateVO> list = service.aCovidState(service.covidState(service.getCovidStateApi(service.day(service.today()), service.today())));
+		model.addAttribute("state", list.get(0).getADecideCnt());
+		
 		//service.Crawler();
+		
 		ArrayList<DisasterVO> dlist = service.DisasterMsg(service.getDisasterMsgApi());
-		//System.out.println("DisasterMsg dlist: " + dlist);
+		System.out.println("DisasterMsg dlist: " + dlist);
 		if(dlist.size()==0) {
 			model.addAttribute("n", "n");
+		} else {
+			model.addAttribute("dlist", dlist);
 		}
-		model.addAttribute("dlist", dlist);
+		
+		model.addAttribute("mCnt", service.msgCount(dlist));
 				
 		return "/dailyAll/beta";
 	}
