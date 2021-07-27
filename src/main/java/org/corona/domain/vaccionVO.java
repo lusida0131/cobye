@@ -1,5 +1,4 @@
 package org.corona.domain;
-
 import lombok.Data;
 
 @Data

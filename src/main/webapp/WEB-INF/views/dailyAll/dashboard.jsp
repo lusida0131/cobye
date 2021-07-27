@@ -41,8 +41,9 @@
 										</div>
 										<div class="col pr-0">
 											<p class="small text-muted mb-0">어제 확진자</p>
-											<span class="h3 mb-0">&nbsp;<fmt:formatNumber value="${alist[0].ADecideCnt}" pattern="#,###,###" /> 명</span>
-											<!-- <span class="small text-success">+16.5%</span> -->
+											<span class="h3 mb-0">&nbsp;<fmt:formatNumber value="${alist[0].ADecideCnt}" pattern="#,###,###" /> 명</span>&nbsp;&nbsp;&nbsp;
+											<c:if test="${(alist[0].ADecideCnt-alist[1].ADecideCnt) > 0}"><span class="small text-success">+</span></c:if>
+											<span class="small text-success">${alist[0].ADecideCnt-alist[1].ADecideCnt}명</span>
 										</div>
 									</div>
 								</div>
@@ -61,7 +62,8 @@
 											<p class="small text-muted mb-0">누적 확진자</p>
 											<div class="row align-items-center no-gutters">
 												<div class="col-auto">
-													<span class="h3 mr-2 mb-0">&nbsp;<fmt:formatNumber value="${alist[0].decideCnt}" pattern="#,###,###" /> 명</span>
+													<span class="h3 mr-2 mb-0">&nbsp;<fmt:formatNumber value="${alist[0].decideCnt}" pattern="#,###,###" /> 명</span>&nbsp;&nbsp;
+													<span class="small text-success">+ ${alist[0].ADecideCnt}명</span>
 												</div>
 											</div>
 										</div>
@@ -80,7 +82,9 @@
 										</div>
 										<div class="col">
 											<p class="small text-muted mb-0">누적 사망자</p>
-											<span class="h3 mb-0">&nbsp;<fmt:formatNumber value="${alist[0].deathCnt}" pattern="#,###,###" /> 명</span>
+											<span class="h3 mb-0">&nbsp;<fmt:formatNumber value="${alist[0].deathCnt}" pattern="#,###,###" /> 명</span>&nbsp;&nbsp;&nbsp;
+											<c:if test="${alist[0].ADeathCnt > 0}"><span class="small text-success">+ ${alist[0].ADeathCnt}명</span></c:if>
+											<c:if test="${alist[0].ADeathCnt == 0}"><span class="small text-success">없음</span></c:if>
 										</div>
 									</div>
 								</div>
@@ -90,25 +94,30 @@
 					<div class="col-md-6">
 						<div class="card shadow mb-4">
 							<div class="card-body">
-								<h3 style="margin:10px;">전일대비 확진자 비교</h3><br>
+								<h3 style="margin:10px 10px 0px 20px;">전일대비 확진자 비교</h3><br>
+								<fmt:parseDate value="${alist[0].stateDt}" var="date0" pattern="yyyyMMdd" />
+								<fmt:parseDate value="${alist[1].stateDt}" var="date1" pattern="yyyyMMdd" />
+								<p style="text-align:right; margin-right:20px; margin-bottom:10px;">
+									<fmt:formatDate value="${date0}" pattern="MM월 dd일" /> 기준</p>
 								<div class="chart-widget" style="margin:10px 0px;">
 									<div id="gradientRadial"></div>
 								</div><br>
-								<fmt:parseDate value="${alist[0].stateDt}" var="date0" pattern="yyyyMMdd" />
-								<fmt:parseDate value="${alist[1].stateDt}" var="date1" pattern="yyyyMMdd" />
 								<fmt:parseNumber var="adecPer" value="${alist[0].ADecideCnt/alist[1].ADecideCnt * 100}" integerOnly="true" />
-								<fmt:formatNumber type="percent" value="${alist[0].ADecideCnt/alist[1].ADecideCnt}" pattern="0.0%" var="adecPerr"/>
+								<%-- <fmt:formatNumber type="percent" value="${alist[0].ADecideCnt/alist[1].ADecideCnt}" pattern="0.0%" var="adecPerr"/> --%>
 								<input type="hidden" id="adecPer" value="${adecPer}" />
 								<div class="row">
 									<div class="col-6 text-center">
 										<p class="text-muted mb-0">어제</p>
-										<p class="text-muted mb-0"><fmt:formatDate value="${date1}" pattern="MM월 dd일" /></p>
+										<%-- <p class="text-muted mb-0"><fmt:formatDate value="${date1}" pattern="MM월 dd일" /></p> --%>
 										<h4 class="mb-1"><fmt:formatNumber value="${alist[1].ADecideCnt}" pattern="#,###,###" /> 명</h4>
 									</div>
 									<div class="col-6 text-center">
 										<p class="text-muted mb-0">오늘</p>
-										<p class="text-muted mb-0"><fmt:formatDate value="${date0}" pattern="MM월 dd일" /></p>
+										<%-- <p class="text-muted mb-0"><fmt:formatDate value="${date0}" pattern="MM월 dd일" /></p> --%>
 										<h4 class="mb-1"><fmt:formatNumber value="${alist[0].ADecideCnt}" pattern="#,###,###" /> 명</h4>
+										${alist[0].ADecideCnt-alist[1].ADecideCnt}명&nbsp;&nbsp;
+										<c:if test="${(adecPer-100) > 0}"><span class="small text-success">+</span></c:if>
+										<span class="small text-success">${adecPer-100}%</span>
 									</div>
 								</div>
 							</div>
@@ -223,8 +232,7 @@
 <script src="${pageContext.request.contextPath}/resources/js/config.js"></script>
 
 <script>
-	var adecPer = $('#adecPer').val();
-	console.log("adecPer: "+adecPer);
+	var adecPer = $('#adecPer').val()-100;
 	var gradientRadialChart;
 	var gradientRadialOptions = { 
 	    series: [adecPer], 
@@ -235,8 +243,8 @@
 	    }, 
 	    plotOptions: { 
 	        radialBar: { 
-	            startAngle: -135, 
-	            endAngle: 225, 
+	            startAngle: 0, 
+	            endAngle: 360, 
 	            hollow: { 
 	                margin: 0, 
 	                size: "70%", 
@@ -304,13 +312,15 @@
 <script>
 	var dateArea = [], D = [];
 	<c:forEach var="dlist" items="${alist}">
-		var aa = ('${dlist.stateDt}'*1+1) + "";
-		var a = aa.substr(4,2) + "/" + aa.substr(6,2) + "/" +  aa.substr(0,4);
+		var aa = '${dlist.stateDt}';
+		/* var a = aa.substr(4,2) + "/" + aa.substr(6,2) + "/" +  aa.substr(0,4); */
+		var a = aa.substr(4,2) + "월 " + aa.substr(6,2) + "일";
 	    var a1 = '${dlist.ADecideCnt}';
-	    /* console.log('a: '+a+'   a1: '+a1); */
 	    dateArea.push(a);
 	    D.push(a1);
 	</c:forEach>
+	dateArea.reverse();
+	D.reverse();
 	var columnChart, columnChartoptions = {
         series: [{
             name: "일일 확진자",
@@ -344,7 +354,7 @@
         plotOptions: {
             bar: {
                 horizontal: !1,
-                columnWidth: "15%",
+                columnWidth: "12%",
                 radius: 30,
                 enableShades: !1,
                 endingShape: "rounded",
@@ -362,12 +372,12 @@
             }
           },
         xaxis: {
-            type: "datetime",
+            /* type: "datetime", */
             categories: dateArea,
             labels: {
                 show: !0,
-                trim: !0,
-                offsetX: 30,
+                trim: !1,
+                offsetX: 0,
                 minHeight: void 0,
                 maxHeight: 120,
                 style: {
@@ -376,7 +386,7 @@
                     fontFamily: base.defaultFontFamily
                 }
             },
-            axisBorder: { show: !0 }
+            axisBorder: { show: !1 }
         },
         yaxis: {
             labels: {

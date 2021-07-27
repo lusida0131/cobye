@@ -5,15 +5,14 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-
+<script src="${pageContext.request.contextPath}/resources/js/jquery.min.js"></script>
 <br>
 <br>
 <!-- ################ accordion toggle 적용 START ################ -->
 <div class="container">
 	<div class="row">
 		<div class="col-md-12">
-			<h1>항공편 검색 목록</h1>
-
+			
 			<h3 style="text-align: center;">살랴줘요</h3>
 
 
@@ -48,8 +47,6 @@
 							<div class="panel-body">
 								<%-- <p>This is 간단한 내용. write here. (${count})</p> --%>
 								<form method="get" action="/vaccine/vacmap" id="mapFrm">
-									<button name="mapbtn"
-										style="float: right; margin: 8px 10px 15px 10px;">지도보기</button>
 									<iframe id="if" name="param"
 										style="width: 0px; height: 0px; border: 0px;"></iframe>
 
@@ -73,6 +70,7 @@
 													id="orgZipaddr" value="${list.orgZipaddr}">
 													<input type="hidden" name="orgnm"
 													id="orgnm" value="${list.orgnm}">
+											<button name="mapbtn" style="float: right; margin: 8px 10px 15px 10px;">지도보기</button>
 											</tr>
 										</tbody>
 									</table>
@@ -80,11 +78,7 @@
 							</div>
 						</div>
 					</div>
-
 				</c:forEach>
-
-
-
 			</div>
 		</div>
 	</div>

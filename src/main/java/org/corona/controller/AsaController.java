@@ -32,7 +32,7 @@ public class AsaController {
 		
 		int thisTime1 = Integer.parseInt(thisTime);
 		
-		if((thisTime1 - 120000) < 0) {
+		if((thisTime1 - 120000) < 0) {  // 오전 12시 전이면 어제 날짜를 구하고
 			// 어제 날짜 구하는 식
 			SimpleDateFormat yD = new SimpleDateFormat("yyyyMMdd");
 			Date yDate = new Date();
@@ -45,15 +45,16 @@ public class AsaController {
 			ArrayList<ASAVO> alist = asc.asarea(startCreateDt, endCreateDt);
 			model.addAttribute("alist", alist);
 			System.out.println("null: " + asc.asaage(startCreateDt, endCreateDt));
-			if(asc.asaage(startCreateDt, endCreateDt) == null) {
+			
+			if(asc.asaage(startCreateDt, endCreateDt) == null) { // 어제 날짜의 값이 널이면 유감...
 				String blist = "유감";
 				model.addAttribute("blist", blist);
-			} else {
+			} else {	// 어제 날짜의 값이 널이 아니면  어제 값을 넣어주고 리턴
 				// 연령별, 성별
 				ArrayList<AGEVO> blist = asc.asaage(startCreateDt, endCreateDt);
 				model.addAttribute("blist", blist);
 			}
-		} else {
+		} else {	// 오전 12시 이후면 오늘 날짜를 구하고
 			// 오늘 날짜 구하는 식
 			SimpleDateFormat tD = new SimpleDateFormat("yyyyMMdd");
 			Date time = new Date();
@@ -64,7 +65,7 @@ public class AsaController {
 			// 지역
 			ArrayList<ASAVO> alist = asc.asarea(startCreateDt, endCreateDt);
 			model.addAttribute("alist", alist);
-			if(asc.asaage(startCreateDt, endCreateDt) == null) {
+			if(asc.asaage(startCreateDt, endCreateDt) == null) {  // 오늘 날짜의 값이 널이면 어제 날짜를 구하고
 				// 어제 날짜 구하는 식
 				SimpleDateFormat yD = new SimpleDateFormat("yyyyMMdd");
 				Date yDate = new Date();
@@ -73,19 +74,16 @@ public class AsaController {
 				// 어제 날짜의 데이터
 				String sc = yD.format(yDate);
 				String ec = yD.format(yDate);
-				/*
-				 * ArrayList<AGEVO> blist = asc.asaage(sc, ec); model.addAttribute("blist",
-				 * blist);
-				 */
-				if(asc.asaage(startCreateDt, endCreateDt) == null) {
+				
+				if(asc.asaage(sc, ec) == null) {	// 오늘 날짜의 값이 널이어서 어제날짜를 구했는데 널이면 유감...
 					String blist = "유감";
 					model.addAttribute("blist", blist);
-				} else {
+				} else {	// 오늘 날짜의 값이 널이어서 어제날짜를 구했는데 널이아니면 어제 값을 넣어주고 리턴
 					// 연령별, 성별
-					ArrayList<AGEVO> blist = asc.asaage(startCreateDt, endCreateDt);
+					ArrayList<AGEVO> blist = asc.asaage(sc, ec);
 					model.addAttribute("blist", blist);
 				}
-			} else {
+			} else {	// 오늘날짜의 값이 널이 아니면 값을 넣어주고 리턴
 				// 연령별, 성별
 				ArrayList<AGEVO> blist = asc.asaage(startCreateDt, endCreateDt);
 				model.addAttribute("blist", blist);
