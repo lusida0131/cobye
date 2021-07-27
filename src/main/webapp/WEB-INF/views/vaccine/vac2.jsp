@@ -8,12 +8,14 @@
 <script src="${pageContext.request.contextPath}/resources/js/jquery.min.js"></script>
 <br>
 <br>
+
+<main  role="main" class="main-content">
 <!-- ################ accordion toggle 적용 START ################ -->
-<div class="container">
+<div class="container-fluid">
 	<div class="row">
 		<div class="col-md-12">
 			
-			<h3 style="text-align: center;">병원 검색 하기</h3>
+			<h3 style="text-align: center;">${start} ${doo} 병원 검색 하기</h3>
 
 
 			<hr>
@@ -83,6 +85,7 @@
 		</div>
 	</div>
 </div>
+</main>
 <br>
 
 

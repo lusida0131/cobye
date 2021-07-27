@@ -52,6 +52,8 @@ public class VaccionController {
 			
 			return "/vaccine/vac";
 		}
+		model.addAttribute("start", start);
+		model.addAttribute("doo", doo);
 		model.addAttribute("vlist", vlist);
 		return "/vaccine/vac2";
 		

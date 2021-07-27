@@ -17,8 +17,7 @@
 
 
 <main role="main" class="main-content">
- <div class="alert alert-primary" role="alert">전국 백신접종 병원을
-         확인할수있어요,&nbsp;&nbsp;</div>
+ <div class="alert alert-primary" role="alert">전국 백신접종 병원을 확인할 수 있습니다.&nbsp;&nbsp;</div>
 
 <div id="wrap"   class="support-sub ver3">
       <div id="container">
@@ -33,7 +32,7 @@
             <div class="column column-level2 column-level2-center">
                <div class="column2">
                   <dl>
-                     <dt><span class="btn btn-cancel">거주지</span></dt>
+                     <dt><span>거주지</span></dt>
                      <dd>
                         <form id="flightFrm" name="flightFrm" action="/vaccine/vac2" method="get">
                         <div class="label-group label-group-level2">
@@ -62,8 +61,8 @@
          <br>
          
    
-          <input type="text" id="vapdo" name="vapdo" placeholder="시/구/군 을 입력해주세요 ex)수원시 팔달구"> <br>
-         <input    type="text" id="vapdog"   name="vapdog" placeholder="읍/면/동/리 를 입력해주세요 ex)신월동">
+          <input type="text" id="vapdo" name="vapdo" placeholder="시/구/군 을 입력해주세요 ex)수원시 팔달구(시 와 구까지 적어주세요)"> <br>
+         <input    type="text" id="vapdog"   name="vapdog" placeholder="읍/면/동/리 를 입력해주세요 ex)신월동(동 까지 적어주세요)">
          
          
                         </div>
