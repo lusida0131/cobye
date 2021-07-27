@@ -155,7 +155,6 @@ public class asaServiceImpl implements asaService {
 				String resultMsg = headerObject.getString("resultMsg");
 
 				JSONObject bodyObject = responseObject.getJSONObject("body");
-				JSONObject itemsObject = bodyObject.getJSONObject("items");
 
 				String numOfRows = Integer.toString(bodyObject.getInt("numOfRows"));
 				String pageNo = Integer.toString(bodyObject.getInt("pageNo"));
@@ -163,8 +162,9 @@ public class asaServiceImpl implements asaService {
 				if(totalCount.equals("0")) {
 
 					agelist = null;
+					
 				} else {
-				
+				JSONObject itemsObject = bodyObject.getJSONObject("items");
 				// (response -> body -> items -> item(node 2개이상)) 세번째 JSONObject를 가져와서
 				// key-value를 읽습니다.
 				JSONArray itemArray = itemsObject.getJSONArray("item");

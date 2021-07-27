@@ -46,11 +46,12 @@ public class VaccionController {
 		
 		 
 		String orgZipaddr = request.getParameter("orgZipaddr");
-		
+		String orgnm = request.getParameter("orgnm");
 		
 		attr.addFlashAttribute("orgZipaddr", orgZipaddr);
-		
+		attr.addFlashAttribute("orgZipaddr", orgnm);
 		System.out.println("dddddddddddddddddd" + orgZipaddr);
+		System.out.println("ddddddddddddddssssssssss" + orgnm);
 		return "/vaccine/vacmap";
 	}
 }

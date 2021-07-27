@@ -20,10 +20,10 @@ public class HomeController {
 //		return "/dailyAll/dashboard";
 //	}
 	
-	@GetMapping("/dailyAll/dashboard")
-	public String dashboard() {
-		return "/dailyAll/dashboard";
-	}
+//	@GetMapping("/dailyAll/dashboard")
+//	public String dashboard() {
+//		return "/dailyAll/dashboard";
+//	}
 	
 	/*@GetMapping("/ASA/asa")
 	public String asa() {
