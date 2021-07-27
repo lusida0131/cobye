@@ -31,6 +31,8 @@ public class StateController {
 	
 	@GetMapping("/")
 	public String test(Model model) throws IOException {
+		
+		//service.Crawler();
 
 		String eDay = service.today();	// 기준일 (=종료일)
 		String sDay = service.day(eDay);	// 기준일-10일 (=시작일)
