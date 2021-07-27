@@ -18,6 +18,11 @@
     .info .link {color: #5085BB;}
 </style>
 <main role="main" class="main-content">
+	<div class="alert alert-dark" role="alert">
+		<img height="20" width="20" src="${pageContext.request.contextPath}/resources/image/map-marker-icon_34392.png">&nbsp; 현위치&nbsp; 
+		<img height="20" width="20" src="${pageContext.request.contextPath}/resources/image/marker_icon-icons.com_54388.png">&nbsp; 임시 선별진료소&nbsp;
+		<img height="20" width="20" src="${pageContext.request.contextPath}/resources/image/clipart353131.png">&nbsp; 선별진료소
+	</div>
 	<div class="container-fluid">
 			<div id="map" style="width:100%;height:100vh;"></div>
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>

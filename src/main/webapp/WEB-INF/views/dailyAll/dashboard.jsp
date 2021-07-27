@@ -232,7 +232,7 @@
 <script src="${pageContext.request.contextPath}/resources/js/config.js"></script>
 
 <script>
-	var adecPer = $('#adecPer').val();
+	var adecPer = $('#adecPer').val()-100;
 	var gradientRadialChart;
 	var gradientRadialOptions = { 
 	    series: [adecPer], 
