@@ -1,4 +1,4 @@
-![header](https://capsule-render.vercel.app/api?type=rounded&color=4DA0F2&height=200&section=header&text=Cobye&fontSize=90&fontColor=ffffff)
+![header](https://capsule-render.vercel.app/api?type=rounded&color=4CC69A&height=200&section=header&text=Cobye&fontSize=90&fontColor=ffffff)
 # 🎬 Cobye 프로젝트
  ##  Cobye 예매의 편리함과 커뮤니티를 제공하여 정보를 공유할 수 있게 만들어진 항공 예매 플랫폼 서비스입니다.
 >여행을 즐기는 사람들이 증가하게 되면서 자연스레 항공을 이용하는 빈도 또한 높아지고 있다.   
