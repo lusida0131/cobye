@@ -13,7 +13,7 @@
 	<div class="row">
 		<div class="col-md-12">
 			
-			<h3 style="text-align: center;">살랴줘요</h3>
+			<h3 style="text-align: center;">병원 검색 하기</h3>
 
 
 			<hr>
