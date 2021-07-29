@@ -4,110 +4,114 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 		
-		<main role="main" class="main-content">
+	<main role="main" class="main-content">
 		<div class="container-fluid">
-		<div class="alert alert-primary" role="alert">지역, 성별, 연령별 확진자를 확인할 수 있습니다.</div>
-		<div class="row justify-content-center">
-			<div class="row">
-					<div class="col-md-12">
-					<h6 class="mb-3" style="text-align:center;">성별 연령별 확진자 한눈에 보기</h6>
-					<c:set var="list" value="${blist}"/>
-					<c:choose>
-						<c:when test="${list ne '유감'}">
-							<div class="row my-4">
-								<div class="col-md-12">
-									<h4 style="text-align:center; margin:30px 0px;">연령별 확진자</h4>
-									<div class="chart-box" style="padding:0px 20px;">
-									<div id="columnChart" style="width: 1350px; height: 500px; margin: 20px auto;  text-align: center;"></div>
+			<div class="alert alert-primary" role="alert">지역, 성별, 연령별 확진자를 확인할 수 있습니다.</div>
+			<div class="row justify-content-center">
+				<div class="col-12">
+					<div class="row">
+						<div class="col-md-12">
+							<h6 class="mb-3" style="text-align:center;">성별 연령별 확진자 한눈에 보기</h6>
+							<c:set var="list" value="${blist}"/>
+							<c:choose>
+								<c:when test="${list ne '유감'}">
+									<div class="row my-4">
+										<div class="col-md-12">
+											<h4 style="text-align:center; margin:30px 0px;">연령별 확진자</h4>
+											<div class="chart-box" style="padding:0px 20px;">
+												<div id="columnChart" style="margin: 20px auto;  text-align: center;"></div>
+											</div>
+										</div>
 									</div>
-								</div>
+									
+									<table class="table table-borderless table-striped">
+										<thead>
+											<tr role="row">
+												<th>연령, 성별</th>
+												<th>확진률</th>
+												<th>확진자</th>
+												<th>사망률</th>
+												<th>사망자</th>
+											</tr>
+										</thead>
+										<tbody>
+										<c:forEach var="blist" items="${blist}">
+											<tr>
+												<th scope="col">${blist.gubun}</th>
+												<td>${blist.confCaseRate}%</td>
+												<td>+${blist.confCase}</td>
+												<input type="hidden" name="confCase" id="confCase" value="${blist.confCase}" />
+												<td>${blist.deathRate}%</td>
+												<td>${blist.death}</td>
+												<input type="hidden" name="death" id="death" value="${blist.death}" />
+											</tr>
+										</c:forEach>
+										</tbody>
+									</table>
+								</c:when>
+								<c:when test="${list eq '유감'}">
+									<h1 style="text-align: center;">성별, 연령별 확진자 정보의 업데이트가 되지 않았습니다.(유감)
+										<br>주말에는 업데이트가 어렵습니다.(유감)</h1>
+								</c:when>
+							</c:choose>
+						</div>
+						<!-- 그래프 -->
+						<div class="col-md-12">
+							<h4 style="text-align:center; margin-top:150px; ">지역별 확진자</h4>
+							<div class="chart-box" style="padding:0px 20px;">
+								<div id="columnChart1" style="margin: 20px auto;  text-align: center;"></div>
 							</div>
-							
+						</div>
+						<!-- 지역 리스트 -->
+						<div class="col-md-12">
+							<h6 class="mb-3" style="text-align:center;">지역 리스트</h6>
 							<table class="table table-borderless table-striped">
 								<thead>
 									<tr role="row">
-										<th>연령, 성별</th>
-										<th>확진률</th>
-										<th>확진자</th>
-										<th>사망률</th>
-										<th>사망자</th>
+										<th>지역</th>
+										<th>등록 일시</th>
+										<th>전체 확진자</th>
+										<th>전일 대비</th>
+										<th>격리중</th>
+										<th>격리 해제</th>
+										<th>사망자 수</th>
+										<th>지역 발생</th>
+										<th>해외 유입</th>
 									</tr>
 								</thead>
 								<tbody>
-								<c:forEach var="blist" items="${blist}">
-									<tr>
-										<th scope="col">${blist.gubun}</th>
-										<td>${blist.confCaseRate}%</td>
-										<td>+${blist.confCase}</td>
-										<input type="hidden" name="confCase" id="confCase" value="${blist.confCase}">
-										<td>${blist.deathRate}%</td>
-										<td>${blist.death}</td>
-										<input type="hidden" name="death" id="death" value="${blist.death}">
-									</tr>
-								</c:forEach>
+									<c:forEach var="alist" items="${alist}">
+										<tr>
+											<th scope="col">${alist.gubun}</th>
+											<input type="hidden" name="gubun" id="gubun" value="${alist.gubun}" />
+											<fmt:parseDate value="${alist.createDt}" var="dateTime" pattern="yyyy-MM-dd HH:mm:ss" />
+											<td><fmt:formatDate value="${dateTime}" pattern="yyyy-MM-dd"/></td>
+											<input type="hidden" name="dateTime" id="dateTime" value="${dateTime}" />
+											<td>${alist.defCnt}</td>  <!-- 전체 확진자 -->
+											<input type="hidden" name="defCnt" id="defCnt" value="${alist.defCnt}" />
+											<td>+${alist.incDec}</td> <!-- 전일 대비 -->
+											<input type="hidden" name="incDec" id="incDec" value="${alist.incDec}" />
+											<td>${alist.isolIngCnt}</td> <!-- 격리중 -->
+											<input type="hidden" name="isolIngCnt" id="isolIngCnt" value="${alist.isolIngCnt}" />
+											<td>${alist.isolClearCnt}</td> <!-- 격리해제 --> 
+											<input type="hidden" name="isolClearCnt" id="isolClearCnt" value="${alist.isolClearCnt}" />
+											<td>${alist.deathCnt}</td>	<!-- 사망자 수  -->
+											<input type="hidden" name="deathCnt" id="deathCnt" value="${alist.deathCnt}" />
+											<td>${alist.localOccCnt}</td>
+											<td>${alist.overFlowCnt}</td>	<!-- 해외 유입 -->
+											<input type="hidden" name="overFlowCnt" id="overFlowCnt" value="${alist.overFlowCnt}" />
+										</tr>
+									</c:forEach>
 								</tbody>
 							</table>
-						</c:when>
-						<c:when test="${list eq '유감'}">
-						<h1 style="text-align: center;">성별, 연령별 확진자 정보의 업데이트가 되지 않았습니다.(유감)
-							<br>주말에는 업데이트가 어렵습니다.(유감)</h1>
-						</c:when>
-					</c:choose>
-				</div>
-				<!-- 그래프 -->
-				<div class="col-md-12">
-						<h4 style="text-align:center; margin-top:150px; ">지역별 확진자</h4>
-						<div class="chart-box" style="padding:0px 20px;">
-						<div id="columnChart1" style="width: 1350px; height: 500px; margin: 20px auto;  text-align: center;"></div>
 						</div>
+					</div>
 				</div>
-			<!-- 지역 리스트 -->
-				<div class="col-md-12">
-					<h6 class="mb-3" style="text-align:center;">지역 리스트</h6>
-						<table class="table table-borderless table-striped">
-							<thead>
-								<tr role="row">
-									<th>지역</th>
-									<th>등록 일시</th>
-									<th>전체 확진자</th>
-									<th>전일 대비</th>
-									<th>격리중</th>
-									<th>격리 해제</th>
-									<th>사망자 수</th>
-									<th>지역 발생</th>
-									<th>해외 유입</th>
-								</tr>
-							</thead>
-							<tbody>
-							<c:forEach var="alist" items="${alist}">
-								<tr>
-									<th scope="col">${alist.gubun}</th>
-									<input type="hidden" name="gubun" id="gubun" value="${alist.gubun}">
-									<fmt:parseDate value="${alist.createDt}" var="dateTime" pattern="yyyy-MM-dd HH:mm:ss" />
-									<td><fmt:formatDate value="${dateTime}" pattern="yyyy-MM-dd"/></td>
-									<input type="hidden" name="dateTime" id="dateTime" value="${dateTime}">
-									<td>${alist.defCnt}</td>  <!-- 전체 확진자 -->
-									<input type="hidden" name="defCnt" id="defCnt" value="${alist.defCnt}">
-									<td>+${alist.incDec}</td> <!-- 전일 대비 -->
-									<input type="hidden" name="incDec" id="incDec" value="${alist.incDec}">
-									<td>${alist.isolIngCnt}</td> <!-- 격리중 -->
-									<input type="hidden" name="isolIngCnt" id="isolIngCnt" value="${alist.isolIngCnt}">
-									<td>${alist.isolClearCnt}</td> <!-- 격리해제 --> 
-									<input type="hidden" name="isolClearCnt" id="isolClearCnt" value="${alist.isolClearCnt}">
-									<td>${alist.deathCnt}</td>	<!-- 사망자 수  -->
-									<input type="hidden" name="deathCnt" id="deathCnt" value="${alist.deathCnt}">
-									<td>${alist.localOccCnt}</td>
-									<td>${alist.overFlowCnt}</td>	<!-- 해외 유입 -->
-									<input type="hidden" name="overFlowCnt" id="overFlowCnt" value="${alist.overFlowCnt}">
-								</tr>
-							</c:forEach>
-							</tbody>
-						</table>
-				</div>
-					</div>
-					</div>
-					</div>
-			</main>
+			</div>
+		</div>
+	</main>
+	
+	
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/apexcharts.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/tinycolor-min.js"></script>

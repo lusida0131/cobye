@@ -28,7 +28,7 @@
   <%-- <script src="${pageContext.request.contextPath}/resources/js/gauge.min.js"></script> --%>
   <%-- <script src="${pageContext.request.contextPath}/resources/js/jquery.sparkline.min.js"></script> --%>
   <script src="${pageContext.request.contextPath}/resources/js/apexcharts.min.js"></script>
-  <script src="${pageContext.request.contextPath}/resources/js/apexcharts.custom.js"></script>
+  <%-- <script src="${pageContext.request.contextPath}/resources/js/apexcharts.custom.js"></script> --%>
   <%-- <script src='${pageContext.request.contextPath}/resources/js/jquery.mask.min.js'></script> --%>
   <%-- <script src='${pageContext.request.contextPath}/resources/js/select2.min.js'></script> --%>
   <%-- <script src='${pageContext.request.contextPath}/resources/js/jquery.steps.min.js'></script> --%>
