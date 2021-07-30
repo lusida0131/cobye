@@ -57,7 +57,11 @@
   * #### (1) 실시간, 어제,누적 확진자, 누적 사망자 수
   * #### (2) 전일대비 확진자 비교(전일대비 증감률)   
   * #### (3) 최근 10일 일별 코로나 확진 현황(그래프) 
-  * #### (4) 최근 코로나 누적 확진 현황  
+  * #### (4) 최근 코로나 누적 확진 현황
+![image](https://user-images.githubusercontent.com/78531061/127585508-5d08ef69-a9c9-4ab6-bd2e-6264a46971c7.png)
+![image](https://user-images.githubusercontent.com/78531061/127585536-bfeabe1b-ea72-4e79-a4a3-cd0d27407faa.png)
+![image](https://user-images.githubusercontent.com/78531061/127585562-1fd0ee08-52fc-4907-97ce-02df1bcb26a8.png)
+  
 
 --- 
 
@@ -67,12 +71,20 @@
   * #### (3) 연령별 확진률, 확진자, 사망률, 사망자(표) 
   * #### (4) 지역별 확진자 수(그래프)
   * #### (5) 지역별 등록 일시, 전체 확진자, 전일대비, 격리중, 격리 해제 사망자, 지역 발생, 해외 유입(표)
+![image](https://user-images.githubusercontent.com/78531061/127585641-4787f940-86db-4932-8998-b6572b44b2e4.png)
+![image](https://user-images.githubusercontent.com/78531061/127585665-076a119c-400a-4792-bc35-766a6b3cb5f0.png)
+![image](https://user-images.githubusercontent.com/78531061/127585678-9d64ea23-609f-4824-8428-bef9ce0bb458.png)
+![image](https://user-images.githubusercontent.com/78531061/127585752-b8741125-5dd1-43de-8f5a-945d9c9151c4.png)
+
 
 --- 
 
  ## 3. 선별진료소 페이지   
    * #### (1) 지도 (현위치, 선별진료소, 임시 선별진료소 정보)
    * #### (2) 길찾기    
+![image](https://user-images.githubusercontent.com/78531061/127585809-24c25ffc-a3ff-4f8e-87b4-cd4a58196c47.png)
+![image](https://user-images.githubusercontent.com/78531061/127585835-9dd3e51d-8b3c-4c94-82d5-d0262fb3842f.png)
+
 
   ---
 
@@ -80,6 +92,9 @@
    * #### (1) 거주지 검색  
    * #### (2) 주변 병원 정보 
    * #### (3) 지도 위치 정보    
+![image](https://user-images.githubusercontent.com/78531061/127585881-0c256ffe-6b53-43ba-890c-0d6c937d4cc2.png)
+![image](https://user-images.githubusercontent.com/78531061/127585949-63e0eec9-4c95-4c12-9c76-ce578962ac95.png)
+![image](https://user-images.githubusercontent.com/78531061/127585972-ccc98634-4cde-41f4-8d99-938ca4d1b1b4.png)
 
   ---
 
