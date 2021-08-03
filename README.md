@@ -7,6 +7,9 @@
 >코로나로 인해 더이상 피해입는 사람들이 발생하지 않고 하루빨리 코로나가 종식되길 희망하며 만든 프로젝트입니다. 
 </details>
 
+>수정버전 : [co_bye](https://github.com/seulda/co_bye)
+</details>
+
 ---
 
 
